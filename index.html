@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VAR Challenge</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<main class="app">
+<!-- Splashscreen -->
+<section class="screen splashScreen active" id="splashScreen">
+<img alt="VAR Challenge Logo" class="splashLogo" src="assets/logo.png"/>
+<div class="loadingBar">
+<div class="loadingFill"></div>
+</div>
+<p>Video Assistant Referee wird gestartet...</p>
+</section>
+<!-- Hauptmenü -->
+<section class="screen menuRedesignScreen" id="menuScreen">
+
+
+<div class="menuRedesignShell menuV2Shell">
+  <div class="menuTopProfile">
+    <div class="profilePortrait">👤</div>
+    <div class="profileText">
+      <strong id="menuUserName">GörnaldoBerlin</strong>
+      <span id="menuUserRole">👑 Owner</span>
+      <div class="profileXpLine">
+        <small>Level 7</small>
+        <div class="profileXpBar"><i style="width:85%"></i></div>
+        <small>850 / 1000 XP</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="menuCenterPanel menuV2Center">
+    <div class="menuLogoArea menuV2LogoArea">
+      <img src="assets/logos/logo.png" alt="VAR Challenge Logo" class="menuLogoImg menuV2Logo" onerror="this.style.display='none'">
+    </div>
+
+    <div class="newMainMenuButtons menuV2Buttons">
+      <button class="varMenuButton primary" onclick="startGame()">
+        <b>▶</b><span>SPIEL</span><small>Starte eine neue VAR-Entscheidung</small>
+      </button>
+      <button class="varMenuButton" onclick="showScreen('careerScreen')">
+        <b>🏆</b><span>KARRIERE</span><small>Arbeite dich bis zur FIFA hoch</small>
+      </button>
+      <button class="varMenuButton" onclick="showScreen('scenesScreen')">
+        <b>🎬</b><span>SZENEN</span><small>Trainiere mit einzelnen Situationen</small>
+      </button>
+      <button class="varMenuButton" onclick="showScreen('communityScreen')">
+        <b>👥</b><span>COMMUNITY</span><small>Entdecke neue Szenen und Inhalte</small>
+      </button>
+      <button class="varMenuButton" onclick="showScreen('placepassScreen')">
+        <b>🎫</b><span>PLATZPASS</span><small>Belohnungen und exklusive Inhalte</small>
+      </button>
+      <button class="varMenuButton" onclick="showScreen('shopScreen')">
+        <b>🛒</b><span>SHOP</span><small>Unterstütze das Projekt</small>
+      </button>
+      <button class="varMenuButton" onclick="showScreen('supportScreen')">
+        <b>❤️</b><span>SUPPORT</span><small>Discord, YouTube, TikTok & Spenden</small>
+      </button>
+      <button class="varMenuButton" onclick="showScreen('settingsScreen')">
+        <b>⚙</b><span>EINSTELLUNGEN</span><small>Grafik, Audio und Spieloptionen</small>
+      </button>
+    </div>
+  </div>
+
+  <aside class="menuV2Widgets menuV2Left">
+    <article class="menuWidget">
+      <h3>📰 NEWS</h3>
+      <p>Willkommen zu Phase 1<br><strong>UI Redesign erfolgreich gestartet!</strong></p>
+    </article>
+    <article class="menuWidget">
+      <h3>🎯 MISSIONEN</h3>
+      <p>Treffe 5 richtige Entscheidungen.</p>
+      <div class="miniProgress"><i style="width:60%"></i></div>
+      <small>3 / 5</small>
+    </article>
+    <article class="menuWidget">
+      <h3>📅 EVENT</h3>
+      <p>Weekend-Event läuft!<br>Doppelte Belohnungen bis Sonntag.</p>
+    </article>
+    <article class="menuWidget">
+      <h3>🔥 TAGESCHALLENGE</h3>
+      <p>Keine Fehlentscheidung in 3 Szenen.</p>
+      <small>1 / 3</small>
+    </article>
+  </aside>
+
+  <aside class="menuV2Widgets menuV2Right">
+    <article class="menuWidget liveWidget">
+      <h3>📺 LIVE-SZENE</h3>
+      <div class="liveThumb"></div>
+      <p>Bundesliga · 23. Spieltag<br><strong>Handspiel oder nicht?</strong></p>
+    </article>
+    <article class="menuWidget">
+      <h3>⭐ TOP-SPIELER</h3>
+      <p>GörnaldoBerlin<br><strong>94% Trefferquote</strong></p>
+    </article>
+    <article class="menuWidget statWidget">
+      <h3>📊 STATISTIK</h3>
+      <p>Entscheidungen: <strong>128</strong><br>Richtige: <strong>94</strong><br>Trefferquote: <strong>73%</strong></p>
+    </article>
+    <article class="menuWidget">
+      <h3>👥 COMMUNITY</h3>
+      <p>Neue Szenen von der Community verfügbar!<br><strong>+12 neue Uploads</strong></p>
+    </article>
+  </aside>
+
+  <footer class="menuBottomBar">
+    <div class="connectionState">● VERBUNDEN</div>
+    <div class="menuSocials">FOLGE UNS&nbsp;&nbsp; 💬 ▶ 🎵 📷</div>
+    <div class="versionInfo"><strong>Alpha 3.7.8</strong><br><span>Build 2026.07.09</span></div>
+    <div class="legalLinks">Datenschutz&nbsp;&nbsp; Impressum&nbsp;&nbsp; Credits</div>
+  </footer>
+</div>
+
+
+
+<div class="logoBox">
+<img alt="VAR Challenge Logo" class="gameLogo" src="assets/logo.png"/>
+<p><span id="menuProjectEdition">Frauen Edition</span> · Referee Career</p>
+</div>
+
+<div class="menuButtons">
+<button class="mainBtn" onclick="startGame()">Spiel starten</button>
+<button class="ghostBtn" onclick="showScreen('careerScreen')">Karriere</button>
+<button class="ghostBtn" onclick="showScreen('highscoreScreen')">Highscore</button>
+<button class="ghostBtn" onclick="showScreen('placepassScreen')">🎫 Platzpass</button>
+<button class="ghostBtn" onclick="showScreen('newsScreen')">📰 News & Infos</button>
+<button class="ghostBtn" onclick="showScreen('supportScreen')">❤️ Support</button>
+<button class="ghostBtn" id="loginMenuBtn" onclick="showScreen('loginScreen')">👤 Login</button>
+<button class="ghostBtn hidden" id="profileMenuBtn" onclick="showScreen('profileScreen')">👤 Profil</button>
+<button class="ghostBtn" onclick="showScreen('settingsScreen')">Einstellungen</button>
+<button class="ghostBtn" onclick="location.href='admin.html'">Admin Center</button>
+</div>
+
+<div class="projectStatusBar" id="projectStatusBar">
+  <div class="projectStatusTop">
+    <span class="projectStatusTitle">🚧 Projektstatus</span>
+    <span class="projectStatusVersion" id="menuProjectVersion">Alpha 0.2</span>
+  </div>
+
+  <div class="projectProgressTrack">
+    <div class="projectProgressFill" id="menuProjectProgressFill" style="width: 18%;"></div>
+  </div>
+
+  <div class="projectStatusBottom">
+    <span id="menuProjectStatus">🟢 In Entwicklung</span>
+    <span id="menuProjectProgressText">18%</span>
+    <span>Nächstes Update: <b id="menuProjectNextUpdate">0.3 Beta</b></span>
+  </div>
+</div>
+</section>
+<!-- Spiel -->
+<section class="screen" id="gameScreen">
+<header class="topBar">
+<div class="matchInfo">
+<span id="leagueName">Frauen-Bundesliga</span>
+<strong id="matchMinute">00:00</strong>
+</div>
+<div class="playerInfo">
+<div class="playerLevel">
+<small>Level</small>
+<strong id="playerLevel">1</strong>
+</div>
+<div class="playerXP">
+<small>XP</small>
+<strong id="playerXP">0</strong>
+</div>
+<div class="scoreBox">
+            Punkte:
+            <span id="score">0</span>
+</div>
+</div>
+</header>
+<section class="sceneCard">
+<div class="monitor">
+<!-- Später kommt hier das Bild oder Video -->
+<img alt="VAR Szene" class="sceneImage hidden" id="sceneImage" src=""/>
+<video class="sceneVideo hidden" controls="" id="sceneVideo">
+</video>
+<div class="monitorText" id="monitorPlaceholder">
+            VAR CHECK
+          </div>
+</div>
+<h2 id="sceneTitle">
+          Szene wird geladen...
+        </h2>
+<p id="sceneDescription">
+</p>
+</section>
+<div class="answerGrid" id="answerButtons">
+</div>
+<div class="resultBox hidden" id="resultBox">
+<h3 id="resultTitle"></h3>
+<p id="resultText"></p>
+<button class="mainBtn" onclick="nextScene()">
+          Nächste Szene
+        </button>
+<button class="ghostBtn" onclick="backToMenu()">
+          Hauptmenü
+        </button>
+</div>
+</section>
+<!-- Karriere (vorbereitet) -->
+<section class="screen" id="careerScreen">
+<h1>Karriere</h1>
+<div class="careerCard">
+<h2>Schiedsrichterprofil</h2>
+<div class="careerGrid">
+<div class="careerItem">
+<span>Name</span>
+<strong id="careerName">
+              Neuer Schiedsrichter
+            </strong>
+</div>
+<div class="careerItem">
+<span>Level</span>
+<strong id="careerLevel">
+              1
+            </strong>
+</div>
+<div class="careerItem">
+<span>XP</span>
+<strong id="careerXP">
+              0
+            </strong>
+</div>
+<div class="careerItem">
+<span>Lizenz</span>
+<strong id="careerLicense">
+              Kreisliga
+            </strong>
+</div>
+</div>
+</div>
+<div class="careerCard">
+<h2>Statistik</h2>
+<div class="careerGrid">
+<div class="careerItem">
+<span>Richtige Entscheidungen</span>
+<strong id="statCorrect">0</strong>
+</div>
+<div class="careerItem">
+<span>Falsche Entscheidungen</span>
+<strong id="statWrong">0</strong>
+</div>
+<div class="careerItem">
+<span>Trefferquote</span>
+<strong id="statAccuracy">0%</strong>
+</div>
+<div class="careerItem">
+<span>Beste Serie</span>
+<strong id="statBestStreak">0</strong>
+</div>
+</div>
+</div>
+<div class="careerButtons">
+<button class="mainBtn" onclick="startGame()">
+          Neue Saison starten
+        </button>
+<button class="ghostBtn" onclick="showScreen('menuScreen')">
+          Zurück
+        </button>
+</div>
+</section>
+
+<!-- Platzpass -->
+<section class="screen" id="placepassScreen">
+  <h1>🎫 Platzpass</h1>
+  <div class="passHero">
+    <div>
+      <span class="tag">Saison aktiv</span>
+      <h2 id="passSeasonName">Platzpass Saison 1</h2>
+      <p id="passSeasonTheme">Bundesliga 2026/27 · VAR Challenge</p>
+    </div>
+    <div class="passLevelBox">
+      <small>Level</small>
+      <strong id="passLevel">0 / 100</strong>
+    </div>
+  </div>
+
+  <div class="passProgressCard">
+    <div class="projectStatusTop">
+      <span>Fortschritt</span>
+      <b id="passProgressText">0%</b>
+    </div>
+    <div class="projectProgressTrack"><div class="projectProgressFill" id="passProgressFill" style="width:0%"></div></div>
+    <p id="passTimeLeft">Noch 74 Tage verfügbar</p>
+  </div>
+
+  <div class="passCompare">
+    <div class="passColumn freePass">
+      <h2>Kostenlos</h2>
+      <ul id="freePassBenefits"></ul>
+    </div>
+    <div class="passColumn premiumPass">
+      <h2>💎 Platzpass</h2>
+      <ul id="premiumPassBenefits"></ul>
+    </div>
+  </div>
+
+  <div class="careerCard">
+    <h2>Was ist im Platzpass enthalten?</h2>
+    <p id="passDescription">Der Platzpass bietet kosmetische Belohnungen, zusätzliche Missionen und Community-Vorteile. Spielentscheidende Inhalte bleiben fair.</p>
+  </div>
+
+  <div class="careerCard">
+    <h2>Belohnungen</h2>
+    <div id="passRewards" class="rewardGrid"></div>
+  </div>
+
+  <div class="careerButtons">
+    <button class="mainBtn" onclick="claimPlacepassMock()">Platzpass ansehen</button>
+    <button class="ghostBtn" onclick="showScreen('menuScreen')">Zurück</button>
+  </div>
+</section>
+
+<!-- News & Infos -->
+<section class="screen" id="newsScreen">
+  <h1>📰 News & Infos</h1>
+  <div class="newsTabs">
+    <button class="miniTab active" onclick="renderNewsCenter('all')">Alle</button>
+    <button class="miniTab" onclick="renderNewsCenter('Update')">Updates</button>
+    <button class="miniTab" onclick="renderNewsCenter('Event')">Events</button>
+    <button class="miniTab" onclick="renderNewsCenter('Platzpass')">Platzpass</button>
+    <button class="miniTab" onclick="renderNewsCenter('Bug')">Bekannte Fehler</button>
+    <button class="miniTab" onclick="renderNewsCenter('Roadmap')">Roadmap</button>
+  </div>
+  <div id="newsList" class="newsList"></div>
+  <button class="ghostBtn" onclick="showScreen('menuScreen')">Zurück</button>
+</section>
+
+
+<!-- Support -->
+<section class="screen" id="supportScreen">
+  <h1>❤️ Support</h1>
+
+  <div class="supportHero">
+    <span class="tag">Freiwillig</span>
+    <h2 id="supportTitle">VAR Challenge unterstützen</h2>
+    <p id="supportIntro">Wenn dir das Projekt gefällt, kannst du die Entwicklung freiwillig unterstützen.</p>
+  </div>
+
+  <div class="supportGrid">
+    <div class="supportCard">
+      <h2>❤️ Entwicklung unterstützen</h2>
+      <p>Alle Spielinhalte bleiben kostenlos spielbar. Unterstützung ist komplett freiwillig.</p>
+      <div class="supportActions">
+        <button class="mainBtn" id="supportPaypalBtn" onclick="openSupportLink('paypal')">Mit PayPal unterstützen</button>
+        <button class="ghostBtn" id="supportKofiBtn" onclick="openSupportLink('kofi')">Ko-fi</button>
+      </div>
+    </div>
+
+    <div class="supportCard">
+      <h2>🌍 Social Media</h2>
+      <div class="socialGrid" id="supportSocialLinks"></div>
+    </div>
+
+    <div class="supportCard">
+      <h2>💬 Community</h2>
+      <div class="supportActions">
+        <button class="ghostBtn" onclick="openSupportLink('discord')">Discord beitreten</button>
+        <button class="ghostBtn" onclick="openSupportLink('bugReport')">Fehler melden</button>
+        <button class="ghostBtn" onclick="openSupportLink('ideaSubmit')">Idee einreichen</button>
+      </div>
+    </div>
+
+    <div class="supportCard">
+      <h2>❤️ Unterstützer</h2>
+      <p>Unterstützer werden nur angezeigt, wenn sie das selbst möchten. Anonyme Unterstützung ist jederzeit möglich.</p>
+      <div id="supporterList" class="supporterList"></div>
+    </div>
+  </div>
+
+  <div class="supportGrid twoCols">
+    <div class="supportCard">
+      <h2>🗺️ Roadmap</h2>
+      <div id="supportRoadmap" class="miniList"></div>
+    </div>
+    <div class="supportCard">
+      <h2>📰 Changelog</h2>
+      <div id="supportChangelog" class="miniList"></div>
+    </div>
+  </div>
+
+  <button class="ghostBtn" onclick="showScreen('menuScreen')">Zurück</button>
+</section>
+
+
+<!-- Account / Login -->
+<section class="screen" id="loginScreen">
+  <h1>👤 Login</h1>
+
+  <div class="authCard">
+    <h2>Einloggen</h2>
+    <p class="mutedText">Alpha-Hinweis: Accounts werden aktuell lokal im Browser gespeichert.</p>
+
+    <label>Benutzername oder E-Mail</label>
+    <input id="loginIdentifier" placeholder="z.B. GörnaldoBerlin" autocomplete="username" />
+
+    <label>Passwort</label>
+    <input id="loginPassword" type="password" placeholder="Passwort" autocomplete="current-password" />
+
+    <div id="loginMessage" class="formMessage"></div>
+
+    <button class="mainBtn" onclick="loginAccount()">Einloggen</button>
+    <button class="ghostBtn" onclick="showScreen('registerScreen')">Noch keinen Account? Registrieren</button>
+    <button class="ghostBtn" onclick="showScreen('forgotPasswordScreen')">Passwort vergessen</button>
+    <button class="ghostBtn" onclick="showScreen('menuScreen')">Zurück</button>
+  </div>
+</section>
+
+<section class="screen" id="registerScreen">
+  <h1>📝 Registrierung</h1>
+
+  <div class="authCard">
+    <h2>Account erstellen</h2>
+    <p class="mutedText">Der Account ist für die Alpha lokal. Online-Accounts kommen später mit Backend.</p>
+
+    <label>Benutzername</label>
+    <input id="registerUsername" placeholder="z.B. GörnaldoBerlin" autocomplete="username" />
+
+    <label>E-Mail</label>
+    <input id="registerEmail" type="email" placeholder="name@example.com" autocomplete="email" />
+
+    <label>Passwort</label>
+    <input id="registerPassword" type="password" placeholder="Mindestens 4 Zeichen" autocomplete="new-password" />
+
+    <label>Passwort wiederholen</label>
+    <input id="registerPasswordRepeat" type="password" placeholder="Passwort wiederholen" autocomplete="new-password" />
+
+    <label>Land</label>
+    <input id="registerCountry" placeholder="Deutschland" />
+
+    <label>Lieblingsverein</label>
+    <select id="registerFavoriteClub">
+      <option value="">Kein Lieblingsverein gewählt</option>
+    </select>
+
+    <label>Avatar</label>
+    <input id="registerAvatar" placeholder="Optional: Emoji oder Bildpfad" />
+
+    <div id="registerMessage" class="formMessage"></div>
+
+    <button class="mainBtn" onclick="registerAccount()">Account erstellen</button>
+    <button class="ghostBtn" onclick="showScreen('loginScreen')">Zum Login</button>
+    <button class="ghostBtn" onclick="showScreen('menuScreen')">Zurück</button>
+  </div>
+</section>
+
+<section class="screen" id="forgotPasswordScreen">
+  <h1>🔑 Passwort vergessen</h1>
+
+  <div class="authCard">
+    <h2>Alpha-Hinweis</h2>
+    <p>Da Accounts aktuell lokal im Browser gespeichert werden, gibt es noch keinen echten E-Mail-Reset.</p>
+    <p>Für Testaccounts kannst du später im Admin Center oder im Browser-Speicher einen neuen Account anlegen.</p>
+
+    <button class="ghostBtn" onclick="showScreen('loginScreen')">Zurück zum Login</button>
+    <button class="ghostBtn" onclick="showScreen('menuScreen')">Hauptmenü</button>
+  </div>
+</section>
+
+<section class="screen" id="profileScreen">
+  <h1>👤 Profil</h1>
+
+  <div class="profileHeaderCard">
+    <div class="profileAvatar" id="profileAvatar">👤</div>
+    <div>
+      <h2 id="profileUsername">Gast</h2>
+      <p id="profileBadges">Benutzer</p>
+      <p class="mutedText">Registriert seit: <span id="profileCreatedAt">-</span></p>
+    </div>
+  </div>
+
+  <div class="careerGrid profileGrid">
+    <div class="careerItem">
+      <span>Level</span>
+      <strong id="profileLevel">1</strong>
+    </div>
+    <div class="careerItem">
+      <span>XP</span>
+      <strong id="profileXP">0</strong>
+    </div>
+    <div class="careerItem">
+      <span>Lieblingsverein</span>
+      <strong id="profileFavoriteClub">-</strong>
+    </div>
+    <div class="careerItem">
+      <span>Platzpass</span>
+      <strong id="profilePlacepass">Free</strong>
+    </div>
+    <div class="careerItem">
+      <span>Supporter</span>
+      <strong id="profileSupporter">Nein</strong>
+    </div>
+    <div class="careerItem">
+      <span>Rolle</span>
+      <strong id="profileRole">Benutzer</strong>
+    </div>
+  </div>
+
+  <div class="careerCard">
+    <h2>📊 Lokale Statistik</h2>
+    <div class="careerGrid">
+      <div class="careerItem"><span>Besuche</span><strong id="profileVisits">0</strong></div>
+      <div class="careerItem"><span>Spiele gestartet</span><strong id="profileGamesStarted">0</strong></div>
+      <div class="careerItem"><span>Szenen gespielt</span><strong id="profileScenesPlayed">0</strong></div>
+      <div class="careerItem"><span>Richtig</span><strong id="profileCorrect">0</strong></div>
+      <div class="careerItem"><span>Falsch</span><strong id="profileWrong">0</strong></div>
+      <div class="careerItem"><span>Quote</span><strong id="profileAccuracy">0%</strong></div>
+    </div>
+  </div>
+
+  <div class="careerCard">
+    <h2>🏅 Badges</h2>
+    <div id="profileBadgeList" class="badgeList"></div>
+  </div>
+
+  <button class="mainBtn" onclick="logoutAccount()">Ausloggen</button>
+  <button class="ghostBtn" onclick="showScreen('menuScreen')">Zurück</button>
+</section>
+
+<!-- Einstellungen -->
+<section class="screen" id="settingsScreen">
+<h1>Einstellungen</h1>
+<div class="careerCard">
+<button class="ghostBtn" onclick="resetPlayerProgress()">
+          Spielstand zurücksetzen
+        </button>
+<button class="ghostBtn">
+          Musik AN / AUS
+        </button>
+<button class="ghostBtn">
+          Soundeffekte AN / AUS
+        </button>
+<button class="ghostBtn" onclick="showScreen('menuScreen')">
+          Zurück
+        </button>
+</div>
+</section>
+<!-- Highscore / Statistik -->
+<section class="screen" id="highscoreScreen">
+<h1>Highscore</h1>
+<div class="careerCard">
+<div class="careerGrid">
+<div class="careerItem">
+<span>Beste Punktzahl</span>
+<strong id="bestScore">0</strong>
+</div>
+<div class="careerItem">
+<span>Gesamt-XP</span>
+<strong id="highscoreXP">0</strong>
+</div>
+<div class="careerItem">
+<span>Level</span>
+<strong id="highscoreLevel">1</strong>
+</div>
+<div class="careerItem">
+<span>Titel</span>
+<strong id="highscoreTitle">Schiedsrichter-Anwärter</strong>
+</div>
+</div>
+<button class="ghostBtn" onclick="showScreen('menuScreen')">
+          Zurück
+        </button>
+</div>
+</section>
+</main>
+<!-- Daten zuerst laden -->
+<script src="data/scenes.js"></script>
+  <script src="data/placepass.js"></script>
+  <script src="data/news.js"></script>
+  <script src="data/support.js"></script>
+<!-- Spiel-Logik danach laden -->
+<script src="script.js"></script>
+</body>
+</html>

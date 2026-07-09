@@ -1,0 +1,1498 @@
+[
+  {
+    "club": "SC Freiburg",
+    "first": "Derry Lionel",
+    "last": "Scherhant",
+    "pos": "LA",
+    "num": "7",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Cyriaque",
+    "last": "Irié",
+    "pos": "RA",
+    "num": "22",
+    "nat": "Burkina Faso"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Igor",
+    "last": "Matanović",
+    "pos": "ST",
+    "num": "31",
+    "nat": "Kroatien"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Keisuke",
+    "last": "Goto",
+    "pos": "ST",
+    "num": "",
+    "nat": "Japan"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Lucas",
+    "last": "Höler",
+    "pos": "ST",
+    "num": "9",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Eren",
+    "last": "Dinkçi",
+    "pos": "RA",
+    "num": "18",
+    "nat": "Türkei"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Vincenzo",
+    "last": "Grifo",
+    "pos": "LA",
+    "num": "32",
+    "nat": "Italien"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Jan-Niklas",
+    "last": "Beste",
+    "pos": "LM",
+    "num": "19",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Yuito",
+    "last": "Suzuki",
+    "pos": "OM",
+    "num": "14",
+    "nat": "Japan"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Rihito",
+    "last": "Yamamoto",
+    "pos": "ZM",
+    "num": "",
+    "nat": "Japan"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Maximilian",
+    "last": "Eggestein",
+    "pos": "ZM",
+    "num": "8",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Florent",
+    "last": "Muslija",
+    "pos": "OM",
+    "num": "23",
+    "nat": "Kosovo"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Patrick",
+    "last": "Osterhage",
+    "pos": "DM",
+    "num": "6",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Johan",
+    "last": "Manzambi",
+    "pos": "ZM",
+    "num": "44",
+    "nat": "Schweiz"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Robert",
+    "last": "Wagner",
+    "pos": "ZM",
+    "num": "23",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Anthony",
+    "last": "Jung",
+    "pos": "IV",
+    "num": "5",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Philipp",
+    "last": "Treu",
+    "pos": "RV",
+    "num": "29",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Karl",
+    "last": "Steinmann",
+    "pos": "IV",
+    "num": "",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Christian",
+    "last": "Günter",
+    "pos": "LV",
+    "num": "30",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Lukas",
+    "last": "Kübler",
+    "pos": "RV",
+    "num": "17",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Philipp",
+    "last": "Lienhart",
+    "pos": "IV",
+    "num": "3",
+    "nat": "Österreich"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Matthias",
+    "last": "Ginter",
+    "pos": "IV",
+    "num": "28",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Maximilian",
+    "last": "Rosenfelder",
+    "pos": "IV",
+    "num": "37",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Jordy",
+    "last": "Makengo",
+    "pos": "LV",
+    "num": "33",
+    "nat": "Frankreich"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Bruno Ifechukwu",
+    "last": "Ogbus",
+    "pos": "IV",
+    "num": "43",
+    "nat": "Schweiz"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Berkay",
+    "last": "Yılmaz",
+    "pos": "LV",
+    "num": "39",
+    "nat": "Türkei"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Mio",
+    "last": "Backhaus",
+    "pos": "TW",
+    "num": "",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Noah",
+    "last": "Atubolu",
+    "pos": "TW",
+    "num": "1",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Florian",
+    "last": "Müller",
+    "pos": "TW",
+    "num": "21",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "SC Freiburg",
+    "first": "Jannik",
+    "last": "Huth",
+    "pos": "TW",
+    "num": "24",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Jamie",
+    "last": "Leweling",
+    "pos": "RA",
+    "num": "18",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Ermedin",
+    "last": "Demirović",
+    "pos": "ST",
+    "num": "9",
+    "nat": "Bosnien und Herzegowina"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Deniz",
+    "last": "Undav",
+    "pos": "ST",
+    "num": "26",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Tiago",
+    "last": "Tomás",
+    "pos": "ST",
+    "num": "8",
+    "nat": "Portugal"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Chris",
+    "last": "Führich",
+    "pos": "LA",
+    "num": "10",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Badredine",
+    "last": "Bouanani",
+    "pos": "RA",
+    "num": "27",
+    "nat": "Algerien"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Jovan",
+    "last": "Milošević",
+    "pos": "ST",
+    "num": "",
+    "nat": "Serbien"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Jeremy",
+    "last": "Arévalo",
+    "pos": "ST",
+    "num": "25",
+    "nat": "Ecuador"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Lazar",
+    "last": "Jovanović",
+    "pos": "LA",
+    "num": "45",
+    "nat": "Serbien"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Justin",
+    "last": "Diehl",
+    "pos": "LA",
+    "num": "17",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Angelo",
+    "last": "Stiller",
+    "pos": "DM",
+    "num": "6",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Bilal",
+    "last": "El Khannouss",
+    "pos": "OM",
+    "num": "11",
+    "nat": "Marokko"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Chema",
+    "last": "Andrés",
+    "pos": "DM",
+    "num": "30",
+    "nat": "Spanien"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Nikolas",
+    "last": "Nartey",
+    "pos": "ZM",
+    "num": "28",
+    "nat": "Dänemark"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Atakan",
+    "last": "Karazor",
+    "pos": "DM",
+    "num": "16",
+    "nat": "Türkei"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Mirza",
+    "last": "Catović",
+    "pos": "ZM",
+    "num": "35",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Grischa",
+    "last": "Prömel",
+    "pos": "ZM",
+    "num": "",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Finn",
+    "last": "Jeltsch",
+    "pos": "IV",
+    "num": "29",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Ramon",
+    "last": "Hendriks",
+    "pos": "IV",
+    "num": "3",
+    "nat": "Niederlande"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Maximilian",
+    "last": "Mittelstädt",
+    "pos": "LV",
+    "num": "7",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Jeffrey Julian Gaston",
+    "last": "Chabot",
+    "pos": "IV",
+    "num": "24",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Luca",
+    "last": "Jaquez",
+    "pos": "IV",
+    "num": "14",
+    "nat": "Schweiz"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Josha",
+    "last": "Vagnoman",
+    "pos": "RV",
+    "num": "4",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Lorenz",
+    "last": "Assignon",
+    "pos": "RV",
+    "num": "22",
+    "nat": "Frankreich"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Ameen",
+    "last": "Al-Dakhil",
+    "pos": "IV",
+    "num": "2",
+    "nat": "Belgien"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Leonidas",
+    "last": "Stergiou",
+    "pos": "IV",
+    "num": "20",
+    "nat": "Schweiz"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Dan-Axel",
+    "last": "Zagadou",
+    "pos": "IV",
+    "num": "23",
+    "nat": "Frankreich"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Dennis",
+    "last": "Seimen",
+    "pos": "TW",
+    "num": "41",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Fabian",
+    "last": "Bredlow",
+    "pos": "TW",
+    "num": "1",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfB Stuttgart",
+    "first": "Stefan",
+    "last": "Drljača",
+    "pos": "TW",
+    "num": "21",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Benedict",
+    "last": "Hollerbach",
+    "pos": "ST",
+    "num": "17",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Nelson Felix Patrick",
+    "last": "Weiper",
+    "pos": "ST",
+    "num": "44",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Ransford",
+    "last": "Königsdörffer",
+    "pos": "ST",
+    "num": "",
+    "nat": "Ghana"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Phillip",
+    "last": "Tietz",
+    "pos": "ST",
+    "num": "20",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "William Bøving",
+    "last": "Vick",
+    "pos": "LA",
+    "num": "14",
+    "nat": "Dänemark"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Silas",
+    "last": "Wamangituka",
+    "pos": "RA",
+    "num": "26",
+    "nat": "DR Kongo"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Ben",
+    "last": "Bobzien",
+    "pos": "RA",
+    "num": "38",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Sheraldo",
+    "last": "Becker",
+    "pos": "ST",
+    "num": "23",
+    "nat": "Suriname"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Kaishu",
+    "last": "Sano",
+    "pos": "DM",
+    "num": "6",
+    "nat": "Japan"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Paul",
+    "last": "Nebel",
+    "pos": "OM",
+    "num": "8",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Nadiem",
+    "last": "Amiri",
+    "pos": "OM",
+    "num": "10",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Eric",
+    "last": "Martel",
+    "pos": "DM",
+    "num": "",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Anthony",
+    "last": "Caci",
+    "pos": "LM",
+    "num": "19",
+    "nat": "Frankreich"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Hong",
+    "last": "Hyun-seok",
+    "pos": "OM",
+    "num": "14",
+    "nat": "Südkorea"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Lennard",
+    "last": "Maloney",
+    "pos": "DM",
+    "num": "15",
+    "nat": "USA"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Sota",
+    "last": "Kawasaki",
+    "pos": "ZM",
+    "num": "24",
+    "nat": "Japan"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Dominik",
+    "last": "Kohr",
+    "pos": "DM",
+    "num": "31",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Lee",
+    "last": "Jae-sung",
+    "pos": "OM",
+    "num": "7",
+    "nat": "Südkorea"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Marco",
+    "last": "Richter",
+    "pos": "OM",
+    "num": "10",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Otto",
+    "last": "Ruoppi",
+    "pos": "ZM",
+    "num": "",
+    "nat": "Finnland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Kacper",
+    "last": "Potulski",
+    "pos": "IV",
+    "num": "48",
+    "nat": "Polen"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Andreas",
+    "last": "Hanche-Olsen",
+    "pos": "IV",
+    "num": "25",
+    "nat": "Norwegen"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Fabio",
+    "last": "Gruber",
+    "pos": "IV",
+    "num": "",
+    "nat": "Peru"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Phillipp",
+    "last": "Mwene",
+    "pos": "RV",
+    "num": "2",
+    "nat": "Österreich"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Danny",
+    "last": "da Costa",
+    "pos": "RV",
+    "num": "21",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Silvan",
+    "last": "Widmer",
+    "pos": "RV",
+    "num": "30",
+    "nat": "Schweiz"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Stefan",
+    "last": "Bell",
+    "pos": "IV",
+    "num": "16",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Maxim",
+    "last": "Dal",
+    "pos": "IV",
+    "num": "47",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Robin",
+    "last": "Zentner",
+    "pos": "TW",
+    "num": "27",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FSV Mainz 05",
+    "first": "Maximilian",
+    "last": "Kinzig",
+    "pos": "TW",
+    "num": "",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Shuto",
+    "last": "Machino",
+    "pos": "ST",
+    "num": "18",
+    "nat": "Japan"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Hugo",
+    "last": "Bolin",
+    "pos": "LA",
+    "num": "38",
+    "nat": "Schweden"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Isac",
+    "last": "Lidberg",
+    "pos": "ST",
+    "num": "",
+    "nat": "Schweden"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Tomáš",
+    "last": "Čvančara",
+    "pos": "ST",
+    "num": "31",
+    "nat": "Tschechien"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Grant Leon",
+    "last": "Ranos",
+    "pos": "ST",
+    "num": "28",
+    "nat": "Armenien"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Tim",
+    "last": "Kleindienst",
+    "pos": "ST",
+    "num": "11",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Nathan",
+    "last": "Ngoumou",
+    "pos": "RA",
+    "num": "19",
+    "nat": "Frankreich"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Robin",
+    "last": "Hack",
+    "pos": "LA",
+    "num": "25",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Franck",
+    "last": "Honorat",
+    "pos": "RA",
+    "num": "9",
+    "nat": "Frankreich"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Giovanni",
+    "last": "Reyna",
+    "pos": "OM",
+    "num": "13",
+    "nat": "USA"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Wael",
+    "last": "Mohya",
+    "pos": "ZM",
+    "num": "36",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Zento",
+    "last": "Uno",
+    "pos": "ZM",
+    "num": "",
+    "nat": "Japan"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Enzo",
+    "last": "Leopold",
+    "pos": "ZM",
+    "num": "",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Jan",
+    "last": "Leszczyński",
+    "pos": "ZM",
+    "num": "",
+    "nat": "Polen"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Florian",
+    "last": "Neuhaus",
+    "pos": "ZM",
+    "num": "10",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Kevin",
+    "last": "Stöger",
+    "pos": "OM",
+    "num": "7",
+    "nat": "Österreich"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Philipp",
+    "last": "Sander",
+    "pos": "DM",
+    "num": "16",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Jens",
+    "last": "Castrop",
+    "pos": "ZM",
+    "num": "17",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Yukhym",
+    "last": "Konoplya",
+    "pos": "RV",
+    "num": "",
+    "nat": "Ukraine"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "David",
+    "last": "Herold",
+    "pos": "LV",
+    "num": "",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Nico",
+    "last": "Elvedi",
+    "pos": "IV",
+    "num": "30",
+    "nat": "Schweiz"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Joe",
+    "last": "Scally",
+    "pos": "RV",
+    "num": "29",
+    "nat": "USA"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Fabio Cristian",
+    "last": "Chiarodia",
+    "pos": "IV",
+    "num": "2",
+    "nat": "Italien"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Lukas",
+    "last": "Ullrich",
+    "pos": "LV",
+    "num": "26",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Kevin",
+    "last": "Diks",
+    "pos": "IV",
+    "num": "4",
+    "nat": "Indonesien"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Daniel",
+    "last": "Batz",
+    "pos": "TW",
+    "num": "",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Tobias",
+    "last": "Sippel",
+    "pos": "TW",
+    "num": "21",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Jan Jakob",
+    "last": "Olschowsky",
+    "pos": "TW",
+    "num": "23",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "Borussia Mönchengladbach",
+    "first": "Moritz",
+    "last": "Nicolas",
+    "pos": "TW",
+    "num": "33",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Alessio",
+    "last": "Besio",
+    "pos": "ST",
+    "num": "23",
+    "nat": "Schweiz"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Fabian",
+    "last": "Reese",
+    "pos": "LA",
+    "num": "11",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Robert",
+    "last": "Glatzel",
+    "pos": "ST",
+    "num": "19",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Fraser",
+    "last": "Hornby",
+    "pos": "ST",
+    "num": "",
+    "nat": "Schottland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Kento",
+    "last": "Shiogai",
+    "pos": "RA",
+    "num": "7",
+    "nat": "Japan"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Dženan",
+    "last": "Pejčinović",
+    "pos": "ST",
+    "num": "17",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Andreas",
+    "last": "Skov Olsen",
+    "pos": "RA",
+    "num": "7",
+    "nat": "Dänemark"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "David Alessandro",
+    "last": "Leal Costa",
+    "pos": "LA",
+    "num": "37",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Mohammed",
+    "last": "Amoura",
+    "pos": "ST",
+    "num": "9",
+    "nat": "Algerien"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Elvis",
+    "last": "Rexhbeçaj",
+    "pos": "ZM",
+    "num": "37",
+    "nat": "Kosovo"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Pharrell",
+    "last": "Hensel",
+    "pos": "ZM",
+    "num": "37",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Christian",
+    "last": "Eriksen",
+    "pos": "ZM",
+    "num": "24",
+    "nat": "Dänemark"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Vinicius",
+    "last": "Souza",
+    "pos": "DM",
+    "num": "5",
+    "nat": "Brasilien"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Eryk Artur",
+    "last": "Grzywacz",
+    "pos": "ZM",
+    "num": "",
+    "nat": "Polen"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Bence",
+    "last": "Dárdai",
+    "pos": "OM",
+    "num": "8",
+    "nat": "Ungarn"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Lovro",
+    "last": "Majer",
+    "pos": "OM",
+    "num": "10",
+    "nat": "Kroatien"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Aster",
+    "last": "Vranckx",
+    "pos": "DM",
+    "num": "6",
+    "nat": "Belgien"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Mattias",
+    "last": "Svanberg",
+    "pos": "ZM",
+    "num": "32",
+    "nat": "Schweden"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Yannick",
+    "last": "Gerhardt",
+    "pos": "ZM",
+    "num": "31",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Maximilian",
+    "last": "Arnold",
+    "pos": "DM",
+    "num": "27",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Aaron",
+    "last": "Zehnter",
+    "pos": "LV",
+    "num": "25",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Hauke",
+    "last": "Wahl",
+    "pos": "IV",
+    "num": "6",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Jonas",
+    "last": "Adjetey",
+    "pos": "IV",
+    "num": "18",
+    "nat": "Ghana"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Cleiton Santana",
+    "last": "dos Santos",
+    "pos": "IV",
+    "num": "33",
+    "nat": "Brasilien"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Saël",
+    "last": "Kumbedi",
+    "pos": "RV",
+    "num": "26",
+    "nat": "Frankreich"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Konstantinos",
+    "last": "Koulierakis",
+    "pos": "IV",
+    "num": "4",
+    "nat": "Griechenland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Mathys",
+    "last": "Angély",
+    "pos": "IV",
+    "num": "22",
+    "nat": "Frankreich"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Moritz",
+    "last": "Jenz",
+    "pos": "IV",
+    "num": "15",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Denis",
+    "last": "Vavro",
+    "pos": "IV",
+    "num": "3",
+    "nat": "Slowakei"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Till",
+    "last": "Neininger",
+    "pos": "IV",
+    "num": "44",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Jan",
+    "last": "Bürger",
+    "pos": "IV",
+    "num": "41",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Joakim",
+    "last": "Mæhle",
+    "pos": "RV",
+    "num": "21",
+    "nat": "Dänemark"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Rogério",
+    "last": "Oliveira da Silva",
+    "pos": "LV",
+    "num": "13",
+    "nat": "Brasilien"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Kilian",
+    "last": "Fischer",
+    "pos": "RV",
+    "num": "2",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Jakub",
+    "last": "Zieliński",
+    "pos": "TW",
+    "num": "30",
+    "nat": "Polen"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Kamil",
+    "last": "Grabara",
+    "pos": "TW",
+    "num": "1",
+    "nat": "Polen"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Marius",
+    "last": "Müller",
+    "pos": "TW",
+    "num": "29",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Pavao",
+    "last": "Pervan",
+    "pos": "TW",
+    "num": "12",
+    "nat": "Österreich"
+  },
+  {
+    "club": "VfL Wolfsburg",
+    "first": "Bruno",
+    "last": "Katz",
+    "pos": "ST",
+    "num": "42",
+    "nat": "Finnland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Said",
+    "last": "El Mala",
+    "pos": "LA",
+    "num": "13",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Jakub",
+    "last": "Kamiński",
+    "pos": "LA",
+    "num": "16",
+    "nat": "Polen"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Ragnar",
+    "last": "Ache",
+    "pos": "ST",
+    "num": "9",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Linton",
+    "last": "Maina",
+    "pos": "RA",
+    "num": "37",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Luca",
+    "last": "Waldschmidt",
+    "pos": "ST",
+    "num": "7",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Marius",
+    "last": "Bülter",
+    "pos": "ST",
+    "num": "30",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Fynn",
+    "last": "Schenten",
+    "pos": "ST",
+    "num": "40",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Imad",
+    "last": "Rondić",
+    "pos": "ST",
+    "num": "27",
+    "nat": "Bosnien und Herzegowina"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Malek",
+    "last": "El Mala",
+    "pos": "ST",
+    "num": "19",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Ísak Bergmann",
+    "last": "Jóhannesson",
+    "pos": "ZM",
+    "num": "18",
+    "nat": "Island"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Tom",
+    "last": "Krauß",
+    "pos": "DM",
+    "num": "5",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Alessio",
+    "last": "Castro-Montes",
+    "pos": "RM",
+    "num": "17",
+    "nat": "Belgien"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Emin",
+    "last": "Kujović",
+    "pos": "ZM",
+    "num": "",
+    "nat": "Bosnien und Herzegowina"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Fayssal",
+    "last": "Harchaoui",
+    "pos": "ZM",
+    "num": "34",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Jahmai",
+    "last": "Simpson-Pusey",
+    "pos": "IV",
+    "num": "22",
+    "nat": "England"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Rav",
+    "last": "van den Berg",
+    "pos": "IV",
+    "num": "33",
+    "nat": "Niederlande"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Sebastian Søraas",
+    "last": "Sebulonsen",
+    "pos": "RV",
+    "num": "28",
+    "nat": "Norwegen"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Jan",
+    "last": "Thielmann",
+    "pos": "RV",
+    "num": "29",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Joel",
+    "last": "Schmied",
+    "pos": "IV",
+    "num": "2",
+    "nat": "Schweiz"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Luka",
+    "last": "Lochoshvili",
+    "pos": "IV",
+    "num": "",
+    "nat": "Georgien"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Julian Andreas",
+    "last": "Pauli",
+    "pos": "IV",
+    "num": "24",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Jusuf",
+    "last": "Gazibegović",
+    "pos": "RV",
+    "num": "25",
+    "nat": "Bosnien und Herzegowina"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Rasmus",
+    "last": "Carstensen",
+    "pos": "RV",
+    "num": "18",
+    "nat": "Dänemark"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Timo",
+    "last": "Hübers",
+    "pos": "IV",
+    "num": "4",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Elias-Geoffrey",
+    "last": "Bakatukanda",
+    "pos": "IV",
+    "num": "38",
+    "nat": "DR Kongo"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Neo",
+    "last": "Telle",
+    "pos": "LV",
+    "num": "49",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Marvin",
+    "last": "Schwäbe",
+    "pos": "TW",
+    "num": "1",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Ron-Robert",
+    "last": "Zieler",
+    "pos": "TW",
+    "num": "20",
+    "nat": "Deutschland"
+  },
+  {
+    "club": "1. FC Köln",
+    "first": "Matthias",
+    "last": "Köbbing",
+    "pos": "TW",
+    "num": "44",
+    "nat": "Deutschland"
+  }
+]

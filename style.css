@@ -1,0 +1,1591 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at center, rgba(0, 180, 90, 0.22), transparent 35%),
+    linear-gradient(135deg, #050708, #111518 45%, #050708);
+  color: #f4f4f4;
+  overflow-x: hidden;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Screens */
+
+.screen {
+  display: none;
+  width: min(1100px, 94vw);
+  min-height: 88vh;
+  padding: 28px;
+  border: 1px solid rgba(0, 255, 140, 0.25);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(16, 24, 28, 0.95), rgba(5, 7, 8, 0.96)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 0,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 7px
+    );
+  box-shadow:
+    0 0 35px rgba(0, 255, 120, 0.16),
+    inset 0 0 40px rgba(255, 255, 255, 0.03);
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Menu */
+
+#menuScreen {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+}
+
+.logoBox {
+  margin-bottom: 35px;
+}
+
+.varLabel {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 18px;
+  border-radius: 30px;
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #07110c;
+  background: linear-gradient(135deg, #00ff88, #b6ffd8);
+  box-shadow:
+    0 0 28px rgba(0, 255, 136, 0.65),
+    inset 0 0 18px rgba(255, 255, 255, 0.55);
+}
+
+.logoBox h1 {
+  font-size: clamp(36px, 7vw, 78px);
+  line-height: 0.95;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.logoBox p {
+  margin-top: 12px;
+  color: #8effc0;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+/* Buttons */
+
+button {
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: 0.2s ease;
+}
+
+.mainBtn,
+.ghostBtn {
+  width: min(360px, 90%);
+  padding: 18px 24px;
+  border-radius: 18px;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+
+.mainBtn {
+  color: #04110a;
+  background: linear-gradient(135deg, #00ff88, #b6ffd8);
+  box-shadow: 0 0 22px rgba(0, 255, 136, 0.4);
+}
+
+.mainBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px rgba(0, 255, 136, 0.65);
+}
+
+.ghostBtn {
+  color: #eafff3;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(0, 255, 136, 0.18);
+}
+
+.ghostBtn:hover {
+  background: rgba(0, 255, 136, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Game Screen */
+
+#gameScreen {
+  gap: 22px;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 22px;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(0, 255, 136, 0.18);
+}
+
+.topBar span {
+  display: block;
+  color: #8effc0;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.topBar strong {
+  font-size: 26px;
+}
+
+.scoreBox {
+  padding: 12px 16px;
+  border-radius: 14px;
+  color: #06120b;
+  background: #00ff88;
+  font-weight: 900;
+}
+
+/* Scene */
+
+.sceneCard {
+  flex: 1;
+  padding: 22px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.monitor {
+  height: min(420px, 42vh);
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(0, 255, 136, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at center, rgba(0, 255, 136, 0.18), transparent 44%),
+    #050708;
+  background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%;
+  border: 2px solid rgba(0, 255, 136, 0.25);
+  box-shadow: inset 0 0 35px rgba(0, 255, 136, 0.12);
+}
+
+.monitor::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.04),
+    transparent
+  );
+  animation: scan 2.8s linear infinite;
+}
+
+.monitorText {
+  position: relative;
+  z-index: 2;
+  color: #00ff88;
+  font-size: clamp(34px, 7vw, 88px);
+  font-weight: 900;
+  letter-spacing: 5px;
+  text-shadow: 0 0 18px rgba(0, 255, 136, 0.8);
+}
+
+.sceneCard h2 {
+  margin-top: 22px;
+  font-size: clamp(24px, 4vw, 42px);
+}
+
+.sceneCard p {
+  margin-top: 10px;
+  color: #d8e9df;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+/* Answers */
+
+.answerGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.answerBtn {
+  padding: 20px;
+  border-radius: 18px;
+  color: #f4fff8;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(0, 255, 136, 0.18);
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.answerBtn:hover {
+  background: rgba(0, 255, 136, 0.16);
+  transform: translateY(-2px);
+}
+
+/* Result */
+
+.resultBox {
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(0, 0, 0, 0.42);
+  border: 1px solid rgba(0, 255, 136, 0.22);
+}
+
+.resultBox h3 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.resultBox p {
+  margin-bottom: 18px;
+  color: #d8e9df;
+  line-height: 1.55;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Animation */
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .screen {
+    min-height: 94vh;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .topBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .scoreBox {
+    text-align: center;
+  }
+
+  .answerGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .monitor {
+    height: 300px;
+  }
+}
+
+.answerBtn.correct {
+  background: rgba(0, 255, 136, 0.25);
+  border-color: #00ff88;
+  color: #00ff88;
+}
+
+.answerBtn.wrong {
+  background: rgba(255, 60, 60, 0.25);
+  border-color: #ff4d4d;
+  color: #ff6b6b;
+}
+
+.answerBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+/* Phase 1 Branding */
+
+.gameLogo {
+  width: min(520px, 88vw);
+  max-height: 260px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 28px rgba(0, 255, 136, 0.45));
+}
+
+.splashScreen {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+}
+
+.splashLogo {
+  width: min(620px, 88vw);
+  max-height: 320px;
+  object-fit: contain;
+  animation: logoPulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 38px rgba(0, 255, 136, 0.55));
+}
+
+.loadingBar {
+  width: min(420px, 80vw);
+  height: 12px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.25);
+}
+
+.loadingFill {
+  width: 0%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00ff88, #b6ffd8);
+  animation: loading 2.4s ease forwards;
+}
+
+.splashScreen p {
+  color: #8effc0;
+  letter-spacing: 1px;
+}
+
+@keyframes loading {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.92;
+  }
+
+  50% {
+    transform: scale(1.035);
+    opacity: 1;
+  }
+}
+
+.sceneImage,
+.sceneVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+/* Projektstatus unten im Hauptmenü */
+.menuButtons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.projectStatusBar {
+  width: min(720px, 94%);
+  margin-top: 26px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.34);
+  border: 1px solid rgba(0, 255, 136, 0.22);
+  box-shadow:
+    0 0 22px rgba(0, 255, 136, 0.12),
+    inset 0 0 24px rgba(255, 255, 255, 0.025);
+}
+
+.projectStatusTop,
+.projectStatusBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.projectStatusTitle {
+  color: #8effc0;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.projectStatusVersion {
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: #06120b;
+  background: #00ff88;
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.projectProgressTrack {
+  width: 100%;
+  height: 12px;
+  margin: 14px 0 12px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.20);
+}
+
+.projectProgressFill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00ff88, #b6ffd8);
+  box-shadow: 0 0 18px rgba(0, 255, 136, 0.55);
+  transition: width 0.4s ease;
+}
+
+.projectStatusBottom {
+  color: #d8e9df;
+  font-size: 14px;
+}
+
+.projectStatusBottom b {
+  color: #8effc0;
+}
+
+@media (max-width: 700px) {
+  .projectStatusBar {
+    margin-top: 18px;
+    padding: 14px;
+  }
+
+  .projectStatusTop,
+  .projectStatusBottom {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+
+/* Platzpass & News */
+.passHero,
+.passProgressCard,
+.passColumn,
+.newsCard {
+  width: min(860px, 100%);
+  border: 1px solid rgba(0, 255, 136, 0.22);
+  border-radius: 22px;
+  background: rgba(0, 0, 0, 0.34);
+  box-shadow: 0 0 22px rgba(0, 255, 136, 0.10), inset 0 0 24px rgba(255, 255, 255, 0.025);
+}
+
+.passHero {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.passHero h2 { font-size: clamp(28px, 5vw, 48px); margin: 8px 0; }
+.passHero p { color: #d8e9df; }
+.tag { color:#06120b; background:#00ff88; padding:6px 12px; border-radius:999px; font-weight:900; font-size:12px; text-transform:uppercase; }
+.passLevelBox { min-width: 130px; padding: 18px; border-radius: 18px; background: rgba(0,255,136,.12); text-align:center; }
+.passLevelBox small { display:block; color:#8effc0; text-transform:uppercase; }
+.passLevelBox strong { font-size:30px; }
+.passProgressCard { padding: 18px; margin-bottom: 18px; }
+.passProgressCard p { color:#8effc0; margin-top:10px; }
+
+.passCompare { width:min(860px,100%); display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:16px; margin-bottom:18px; }
+.passColumn { padding: 20px; }
+.passColumn h2 { margin-bottom:14px; }
+.passColumn ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.passColumn li { padding:10px 12px; border-radius:12px; background: rgba(255,255,255,.055); color:#eafff3; }
+.premiumPass { border-color: rgba(255, 205, 80, .45); box-shadow: 0 0 24px rgba(255, 205, 80, .14); }
+.premiumPass h2 { color:#ffd166; }
+.rewardGrid { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap:12px; }
+.rewardItem { padding:14px; border-radius:14px; background: rgba(255,255,255,.055); border:1px solid rgba(0,255,136,.14); }
+.rewardItem strong { display:block; color:#00ff88; margin-bottom:6px; }
+.newsTabs { width:min(860px,100%); display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px; justify-content:center; }
+.miniTab { padding:10px 14px; border-radius:999px; color:#eafff3; background:rgba(255,255,255,.07); border:1px solid rgba(0,255,136,.16); }
+.miniTab.active, .miniTab:hover { background:#00ff88; color:#04110a; }
+.newsList { width:min(860px,100%); display:flex; flex-direction:column; gap:14px; margin-bottom:18px; }
+.newsCard { padding:18px; }
+.newsCardTop { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:8px; flex-wrap:wrap; }
+.newsBadge { color:#06120b; background:#00ff88; padding:5px 10px; border-radius:999px; font-size:12px; font-weight:900; }
+.newsDate { color:#8effc0; font-size:13px; }
+.newsCard h2 { margin-bottom:8px; }
+.newsCard p { color:#d8e9df; line-height:1.5; white-space:pre-line; }
+
+@media (max-width: 768px) {
+  .passHero { flex-direction:column; text-align:center; }
+  .passCompare { grid-template-columns: 1fr; }
+  .newsTabs { justify-content:flex-start; }
+}
+
+
+/* ===========================
+   Alpha 3.7.7a – Support
+=========================== */
+.supportHero,
+.supportCard {
+  width: min(860px, 100%);
+  border: 1px solid rgba(0, 255, 136, 0.22);
+  border-radius: 22px;
+  background: rgba(0, 0, 0, 0.34);
+  box-shadow: 0 0 22px rgba(0, 255, 136, 0.10), inset 0 0 24px rgba(255, 255, 255, 0.025);
+}
+.supportHero { padding: 24px; margin-bottom: 18px; text-align: center; }
+.supportHero h2 { font-size: clamp(30px, 5vw, 48px); margin: 10px 0; }
+.supportHero p,
+.supportCard p { color: #d8e9df; line-height: 1.55; }
+.supportGrid { width: min(860px, 100%); display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; margin-bottom: 18px; }
+.supportGrid.twoCols { align-items: start; }
+.supportCard { padding: 20px; }
+.supportCard h2 { margin-bottom: 12px; }
+.supportActions,
+.socialGrid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 14px; }
+.socialGrid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.socialBtn:disabled { opacity: .45; cursor: not-allowed; }
+.supporterList,
+.miniList { display: flex; flex-direction: column; gap: 10px; }
+.supporterItem,
+.miniListItem { padding: 12px; border-radius: 14px; background: rgba(255,255,255,.055); border: 1px solid rgba(0,255,136,.13); }
+.supporterItem strong,
+.miniListItem strong { display: block; color: #00ff88; margin-bottom: 4px; }
+.miniListItem span { display:block; color:#eafff3; }
+.miniListItem small { color:#8effc0; }
+@media (max-width: 768px) {
+  .supportGrid { grid-template-columns: 1fr; }
+  .socialGrid { grid-template-columns: 1fr; }
+}
+
+
+/* ===========================
+   Account System 3.7.7b
+=========================== */
+
+.authCard,
+.profileHeaderCard {
+  width: min(720px, 100%);
+  margin: 0 auto;
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(6, 12, 16, 0.82);
+  border: 1px solid rgba(0, 255, 140, 0.22);
+  box-shadow: 0 0 28px rgba(0, 255, 140, 0.10);
+}
+
+.authCard label {
+  display: block;
+  margin: 14px 0 6px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.authCard input,
+.authCard select {
+  width: 100%;
+  padding: 14px 15px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 255, 140, 0.22);
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  outline: none;
+}
+
+.authCard input:focus,
+.authCard select:focus {
+  border-color: rgba(0, 255, 140, 0.75);
+  box-shadow: 0 0 0 3px rgba(0, 255, 140, 0.10);
+}
+
+.formMessage {
+  min-height: 22px;
+  margin: 12px 0;
+  font-size: 14px;
+}
+
+.formMessage.success {
+  color: #8dffbd;
+}
+
+.formMessage.error {
+  color: #ff8d8d;
+}
+
+.mutedText {
+  color: rgba(255,255,255,0.65);
+}
+
+.profileHeaderCard {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.profileAvatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+  background: linear-gradient(145deg, rgba(0,255,140,0.25), rgba(0,160,255,0.12));
+  border: 1px solid rgba(0,255,140,0.35);
+}
+
+.profileGrid {
+  width: min(920px, 100%);
+  margin: 0 auto 18px;
+}
+
+.badgeList {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.badgePill {
+  padding: 10px 13px;
+  border-radius: 999px;
+  background: rgba(0,255,140,0.12);
+  border: 1px solid rgba(0,255,140,0.24);
+  color: #eafff4;
+  font-weight: 700;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .authCard,
+  .profileHeaderCard {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .profileHeaderCard {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
+/* ===========================
+   VAR Challenge 3.7.8
+   Menü Redesign Phase 1
+   Assets:
+   - assets/backgrounds/menu-background.png
+   - assets/buttons/menu-button.png
+=========================== */
+
+#menuScreen.menuRedesignScreen,
+.menuRedesignScreen {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.72), rgba(0,0,0,0.18), rgba(0,0,0,0.78)),
+    url("assets/backgrounds/menu-background.png") center center / cover no-repeat fixed;
+}
+
+#menuScreen.menuRedesignScreen > *:not(.menuRedesignShell) {
+  display: none !important;
+}
+
+.menuRedesignShell {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(360px, 560px) minmax(220px, 1fr);
+  gap: clamp(16px, 2vw, 34px);
+  align-items: center;
+  padding: clamp(18px, 3vw, 44px);
+  color: #fff;
+}
+
+.menuTopBar {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.menuProfileMini {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 18px;
+  background: rgba(2, 10, 14, 0.66);
+  border: 1px solid rgba(0, 255, 140, 0.24);
+  box-shadow: 0 0 22px rgba(0, 255, 140, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.menuProfileMini small {
+  display: block;
+  margin-top: 2px;
+  color: rgba(255,255,255,0.62);
+  font-size: 11px;
+}
+
+.menuProfileAvatar {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(0, 255, 140, 0.12);
+  border: 1px solid rgba(0, 255, 140, 0.24);
+}
+
+.menuCenterPanel {
+  grid-column: 2;
+  width: 100%;
+  max-width: 560px;
+  justify-self: center;
+  padding: clamp(18px, 2.4vw, 32px);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at top, rgba(0,255,140,0.16), transparent 34%),
+    linear-gradient(180deg, rgba(1, 12, 18, 0.86), rgba(0, 0, 0, 0.68));
+  border: 1px solid rgba(0, 255, 140, 0.25);
+  box-shadow:
+    0 0 38px rgba(0, 255, 140, 0.10),
+    inset 0 0 24px rgba(0, 255, 140, 0.05);
+  backdrop-filter: blur(14px);
+}
+
+.menuLogoArea {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.menuLogoImg {
+  max-width: 220px;
+  max-height: 110px;
+  object-fit: contain;
+  margin: 0 auto 8px;
+  filter: drop-shadow(0 0 18px rgba(0,255,140,0.35));
+}
+
+.menuLogoArea h1 {
+  margin: 0;
+  font-size: clamp(34px, 5vw, 56px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 0 22px rgba(0,255,140,0.30);
+}
+
+.menuLogoArea p {
+  margin: 6px 0 0;
+  color: rgba(255,255,255,0.68);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.newMainMenuButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.varMenuButton {
+  position: relative;
+  width: 100%;
+  min-height: 58px;
+  border: 0;
+  border-radius: 18px;
+  color: #f2fff9;
+  font-size: clamp(16px, 2vw, 21px);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.20), rgba(0,255,140,0.08), rgba(0,0,0,0.28)),
+    url("assets/buttons/menu-button.png") center center / 100% 100% no-repeat,
+    linear-gradient(180deg, rgba(10,30,34,0.95), rgba(1,8,12,0.92));
+  border: 1px solid rgba(0, 255, 140, 0.24);
+  box-shadow:
+    0 0 18px rgba(0, 255, 140, 0.08),
+    inset 0 0 18px rgba(0, 255, 140, 0.07);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, filter 160ms ease;
+}
+
+.varMenuButton span {
+  margin-left: 8px;
+}
+
+.varMenuButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+  transition: transform 420ms ease;
+}
+
+.varMenuButton:hover {
+  transform: translateY(-2px) scale(1.015);
+  border-color: rgba(0, 255, 140, 0.72);
+  box-shadow:
+    0 0 26px rgba(0, 255, 140, 0.22),
+    inset 0 0 24px rgba(0, 255, 140, 0.12);
+  filter: brightness(1.12);
+}
+
+.varMenuButton:hover::before {
+  transform: translateX(120%);
+}
+
+.varMenuButton:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.varMenuButton.primary {
+  min-height: 68px;
+  border-color: rgba(0, 255, 140, 0.56);
+  box-shadow:
+    0 0 32px rgba(0, 255, 140, 0.22),
+    inset 0 0 26px rgba(0, 255, 140, 0.13);
+}
+
+.menuFooterLine {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.58);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.menuSidePanel {
+  align-self: center;
+  max-width: 320px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(2, 10, 14, 0.54);
+  border: 1px solid rgba(0, 255, 140, 0.16);
+  box-shadow: 0 0 22px rgba(0, 255, 140, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.menuSidePanel h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.menuSidePanel p {
+  margin: 0 0 18px;
+  color: rgba(255,255,255,0.66);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.menuLeftPanel {
+  grid-column: 1;
+  justify-self: end;
+}
+
+.menuRightPanel {
+  grid-column: 3;
+  justify-self: start;
+}
+
+@media (max-width: 1050px) {
+  .menuRedesignShell {
+    grid-template-columns: 1fr;
+    align-items: start;
+    padding-top: 78px;
+  }
+
+  .menuCenterPanel {
+    grid-column: 1;
+    max-width: 560px;
+  }
+
+  .menuSidePanel {
+    display: none;
+  }
+
+  .menuTopBar {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 620px) {
+  #menuScreen.menuRedesignScreen,
+  .menuRedesignScreen {
+    background-attachment: scroll;
+  }
+
+  .menuRedesignShell {
+    padding: 72px 14px 18px;
+  }
+
+  .menuCenterPanel {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .varMenuButton {
+    min-height: 54px;
+    border-radius: 15px;
+    font-size: 15px;
+  }
+
+  .varMenuButton.primary {
+    min-height: 60px;
+  }
+
+  .menuFooterLine {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+
+/* ===========================
+   VAR Challenge 3.7.8b
+   Menü 1zu1 Design Upgrade
+=========================== */
+
+#menuScreen.menuRedesignScreen,
+.menuRedesignScreen {
+  background:
+    radial-gradient(circle at center, rgba(0,0,0,0.10), rgba(0,0,0,0.56) 72%),
+    url("assets/backgrounds/menu-background.png") center center / cover no-repeat fixed !important;
+}
+
+.menuV2Shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(250px, 360px) minmax(560px, 720px) minmax(250px, 360px);
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 3vw, 46px);
+  padding: clamp(18px, 3vw, 32px);
+  color: #fff;
+}
+
+.menuTopProfile {
+  position: fixed;
+  top: 24px;
+  left: 28px;
+  z-index: 10;
+  width: min(340px, calc(100vw - 56px));
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 20px;
+  background: rgba(1, 10, 14, 0.72);
+  border: 1px solid rgba(56, 255, 120, 0.42);
+  box-shadow: 0 0 30px rgba(30, 255, 110, 0.14), inset 0 0 18px rgba(40, 255, 120, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.profilePortrait {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  border: 2px solid rgba(80, 255, 110, 0.58);
+  background: radial-gradient(circle, rgba(40,255,120,.18), rgba(0,0,0,.45));
+}
+
+.profileText strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: .02em;
+}
+
+.profileText span {
+  display: block;
+  margin: 2px 0 8px;
+  color: #7cff4f;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.profileXpLine {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.profileXpLine small {
+  font-size: 11px;
+  color: rgba(255,255,255,.82);
+}
+
+.profileXpBar,
+.miniProgress {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.12);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.profileXpBar i,
+.miniProgress i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #2eff73, #c7ff2e);
+  box-shadow: 0 0 10px rgba(60,255,100,.65);
+}
+
+.menuV2Center {
+  grid-column: 2;
+  justify-self: center;
+  width: min(720px, 100%);
+  padding: 0;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.menuV2LogoArea {
+  margin-bottom: clamp(12px, 2vh, 26px);
+  text-align: center;
+}
+
+.menuV2Logo {
+  display: block;
+  max-width: clamp(300px, 32vw, 520px);
+  max-height: clamp(150px, 22vh, 260px);
+  margin: 0 auto;
+  filter: drop-shadow(0 0 20px rgba(80,255,70,.55)) drop-shadow(0 0 40px rgba(80,255,70,.18));
+}
+
+.menuV2LogoArea h1,
+.menuV2LogoArea p {
+  display: none !important;
+}
+
+.menuV2Buttons {
+  gap: 10px;
+}
+
+.menuV2Buttons .varMenuButton {
+  display: grid;
+  grid-template-columns: 76px 1fr 210px;
+  align-items: center;
+  min-height: clamp(64px, 7vh, 78px);
+  padding: 0 20px;
+  border-radius: 12px;
+  text-align: left;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.26), rgba(0,255,90,.10), rgba(0,0,0,.28)),
+    url("assets/buttons/menu-button.png") center center / 100% 100% no-repeat,
+    linear-gradient(180deg, rgba(20, 34, 36, .94), rgba(0,0,0,.92)) !important;
+  border: 1px solid rgba(80, 255, 90, .28);
+  box-shadow:
+    0 0 20px rgba(65,255,95,.10),
+    inset 0 0 18px rgba(65,255,95,.08);
+}
+
+.menuV2Buttons .varMenuButton.primary {
+  border-color: rgba(140,255,60,.74);
+  box-shadow:
+    0 0 34px rgba(120,255,40,.28),
+    inset 0 0 30px rgba(120,255,40,.10);
+}
+
+.menuV2Buttons .varMenuButton b {
+  width: 54px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  border-radius: 10px;
+  color: #82ff45;
+  background: rgba(0,0,0,.34);
+  border: 1px solid rgba(80,255,90,.25);
+  text-shadow: 0 0 12px rgba(120,255,60,.65);
+}
+
+.menuV2Buttons .varMenuButton span {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 950;
+  letter-spacing: .06em;
+  text-shadow: 0 2px 0 rgba(0,0,0,.8), 0 0 16px rgba(255,255,255,.15);
+}
+
+.menuV2Buttons .varMenuButton small {
+  justify-self: end;
+  max-width: 190px;
+  color: rgba(255,255,255,.86);
+  font-size: 13px;
+  line-height: 1.25;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 800;
+}
+
+.menuV2Widgets {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 4;
+}
+
+.menuV2Left {
+  grid-column: 1;
+  justify-self: end;
+}
+
+.menuV2Right {
+  grid-column: 3;
+  justify-self: start;
+}
+
+.menuWidget {
+  width: min(320px, 100%);
+  padding: 18px 20px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(2,12,14,.86), rgba(0,0,0,.74));
+  border: 1px solid rgba(70,255,95,.30);
+  box-shadow: 0 0 24px rgba(60,255,110,.12), inset 0 0 18px rgba(50,255,100,.06);
+  backdrop-filter: blur(12px);
+}
+
+.menuWidget h3 {
+  margin: 0 0 10px;
+  color: #a4ff4e;
+  font-size: 18px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.menuWidget p {
+  margin: 0;
+  color: rgba(255,255,255,.87);
+  line-height: 1.45;
+  font-size: 14px;
+}
+
+.menuWidget strong {
+  color: #8fff57;
+}
+
+.menuWidget small {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255,255,255,.76);
+  font-weight: 900;
+}
+
+.liveThumb {
+  height: 92px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  background:
+    linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)),
+    url("assets/backgrounds/menu-background.png") center / cover no-repeat;
+  border: 1px solid rgba(255,255,255,.16);
+  filter: grayscale(.45) contrast(1.15);
+}
+
+.menuBottomBar {
+  position: fixed;
+  left: 26px;
+  right: 26px;
+  bottom: 18px;
+  z-index: 12;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+  min-height: 52px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: rgba(2, 8, 12, .72);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 0 20px rgba(0,0,0,.25);
+  backdrop-filter: blur(12px);
+  color: rgba(255,255,255,.88);
+  font-size: 14px;
+}
+
+.connectionState {
+  color: #8bff6a;
+  font-weight: 900;
+}
+
+.menuSocials {
+  text-align: center;
+}
+
+.versionInfo {
+  text-align: center;
+  color: #a5ff58;
+}
+
+.versionInfo span {
+  color: rgba(255,255,255,.68);
+}
+
+.legalLinks {
+  text-align: right;
+}
+
+.menuFooterLine,
+.menuSidePanel,
+.menuTopBar {
+  display: none !important;
+}
+
+@media (max-width: 1280px) {
+  .menuV2Shell {
+    grid-template-columns: minmax(220px, 300px) minmax(470px, 620px) minmax(220px, 300px);
+    gap: 22px;
+  }
+
+  .menuV2Buttons .varMenuButton {
+    grid-template-columns: 64px 1fr 160px;
+  }
+
+  .menuV2Buttons .varMenuButton small {
+    max-width: 155px;
+    font-size: 12px;
+  }
+
+  .menuWidget {
+    width: 260px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .menuV2Shell {
+    display: block;
+    padding: 84px 18px 90px;
+  }
+
+  .menuTopProfile {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .menuV2Center {
+    margin: 0 auto;
+    width: min(620px, 100%);
+  }
+
+  .menuV2Widgets {
+    display: none;
+  }
+
+  .menuBottomBar {
+    grid-template-columns: 1fr;
+    text-align: center;
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin: 18px auto 0;
+    width: min(620px, 100%);
+  }
+
+  .legalLinks {
+    text-align: center;
+  }
+}
+
+@media (max-width: 680px) {
+  .menuV2Buttons .varMenuButton {
+    grid-template-columns: 54px 1fr;
+    min-height: 62px;
+  }
+
+  .menuV2Buttons .varMenuButton small {
+    display: none;
+  }
+
+  .menuV2Buttons .varMenuButton span {
+    font-size: 22px;
+  }
+
+  .menuV2Logo {
+    max-width: 260px;
+  }
+
+  .menuTopProfile {
+    top: 12px;
+    width: calc(100vw - 24px);
+  }
+}
+
+
+/* ===========================
+   VAR Challenge 3.7.8c
+   Menü Background/Layout Fix
+   Ziel:
+   - Hintergrund vollständig ruhiger anzeigen
+   - keine störende Bewegung hinter Buttons
+   - Widgets weiter nach außen
+=========================== */
+
+#menuScreen.menuRedesignScreen,
+.menuRedesignScreen {
+  min-height: 100vh !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.62), rgba(0,0,0,0.04) 38%, rgba(0,0,0,0.04) 62%, rgba(0,0,0,0.64)),
+    radial-gradient(circle at center, rgba(0,0,0,0.04), rgba(0,0,0,0.42) 76%),
+    url("assets/backgrounds/menu-background.png") center center / contain no-repeat !important;
+  background-color: #020506 !important;
+  background-attachment: scroll !important;
+}
+
+/* Der gesamte Menü-Layer wird auf den sichtbaren Bildschirm begrenzt */
+.menuV2Shell {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+  display: grid !important;
+  grid-template-columns: minmax(250px, 330px) minmax(520px, 680px) minmax(250px, 330px) !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: clamp(14px, 2vw, 30px) !important;
+  padding: 84px 32px 76px !important;
+  box-sizing: border-box !important;
+}
+
+/* Mitte etwas kompakter, damit der Hintergrund außen mehr sichtbar bleibt */
+.menuV2Center {
+  width: min(680px, 100%) !important;
+  max-width: 680px !important;
+  justify-self: center !important;
+}
+
+/* Logo größer, aber ohne zusätzlichen Text */
+.menuV2Logo {
+  max-width: clamp(260px, 25vw, 420px) !important;
+  max-height: clamp(120px, 18vh, 210px) !important;
+  margin-bottom: 8px !important;
+}
+
+/* Buttons etwas kompakter, damit unten nichts abgeschnitten wird */
+.menuV2Buttons {
+  gap: 8px !important;
+}
+
+.menuV2Buttons .varMenuButton {
+  min-height: clamp(54px, 6.1vh, 68px) !important;
+  grid-template-columns: 68px 1fr 190px !important;
+  padding: 0 18px !important;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.52), rgba(0,255,90,.08), rgba(0,0,0,.58)),
+    url("assets/buttons/menu-button.png") center center / 100% 100% no-repeat,
+    linear-gradient(180deg, rgba(12, 24, 26, .98), rgba(0,0,0,.96)) !important;
+  background-attachment: scroll, scroll, scroll !important;
+}
+
+/* Button wirkt wie eigenes UI-Element, nicht wie Teil des Hintergrunds */
+.menuV2Buttons .varMenuButton::after {
+  content: "";
+  position: absolute;
+  inset: 6px 10px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.035), transparent 45%, rgba(120,255,60,0.035));
+  pointer-events: none;
+}
+
+.menuV2Buttons .varMenuButton b {
+  width: 48px !important;
+  height: 40px !important;
+  font-size: 25px !important;
+}
+
+.menuV2Buttons .varMenuButton span {
+  font-size: clamp(21px, 2.4vw, 32px) !important;
+  line-height: 1 !important;
+}
+
+.menuV2Buttons .varMenuButton small {
+  max-width: 178px !important;
+  font-size: 12px !important;
+}
+
+/* Seiten-Panels weiter nach außen und kompakter */
+.menuV2Left {
+  justify-self: start !important;
+}
+
+.menuV2Right {
+  justify-self: end !important;
+}
+
+.menuV2Widgets {
+  gap: 12px !important;
+}
+
+.menuWidget {
+  width: min(285px, 100%) !important;
+  padding: 14px 16px !important;
+  background: linear-gradient(180deg, rgba(2,12,14,.82), rgba(0,0,0,.68)) !important;
+}
+
+.menuWidget h3 {
+  font-size: 16px !important;
+  margin-bottom: 7px !important;
+}
+
+.menuWidget p {
+  font-size: 13px !important;
+}
+
+/* Profil oben links etwas kleiner und sauberer */
+.menuTopProfile {
+  top: 20px !important;
+  left: 28px !important;
+  width: min(300px, calc(100vw - 56px)) !important;
+  padding: 10px 13px !important;
+}
+
+.profilePortrait {
+  width: 54px !important;
+  height: 54px !important;
+  font-size: 28px !important;
+}
+
+/* Footer bleibt ruhig am unteren Rand */
+.menuBottomBar {
+  left: 24px !important;
+  right: 24px !important;
+  bottom: 12px !important;
+  min-height: 46px !important;
+  padding: 6px 16px !important;
+}
+
+/* Bei kleineren Monitoren lieber Widgets ausblenden, statt alles zu quetschen */
+@media (max-width: 1180px) {
+  .menuV2Shell {
+    grid-template-columns: 1fr minmax(500px, 650px) 1fr !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .menuWidget {
+    width: 220px !important;
+    padding: 12px !important;
+  }
+
+  .menuWidget p {
+    font-size: 12px !important;
+  }
+
+  .menuV2Buttons .varMenuButton {
+    grid-template-columns: 62px 1fr 150px !important;
+  }
+
+  .menuV2Buttons .varMenuButton small {
+    font-size: 11px !important;
+  }
+}
+
+@media (max-width: 980px) {
+  #menuScreen.menuRedesignScreen,
+  .menuRedesignScreen {
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    background-size: cover !important;
+  }
+
+  .menuV2Shell {
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 92px 16px 24px !important;
+  }
+
+  .menuV2Center {
+    margin: 0 auto !important;
+  }
+
+  .menuV2Widgets {
+    display: none !important;
+  }
+
+  .menuBottomBar {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(650px, 100%) !important;
+    margin: 16px auto 0 !important;
+  }
+}
