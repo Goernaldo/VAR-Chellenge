@@ -1,59 +1,803 @@
-const placepassData = {
-  "seasonName": "Platzpass Saison 1",
-  "theme": "Bundesliga 2026/27",
-  "maxLevel": 100,
-  "currentLevel": 0,
-  "progress": 0,
-  "timeLeft": "Noch 74 Tage verfügbar",
-  "description": "Mit dem Platzpass unterstützt du die Weiterentwicklung von VAR Challenge. Du erhältst kosmetische Belohnungen, zusätzliche Missionen und Community-Vorteile. Alle spielentscheidenden Funktionen bleiben kostenlos verfügbar.",
-  "freeBenefits": [
-    "Daily Missionen",
-    "Wochenmissionen",
-    "Saisonmissionen",
-    "Kostenlose Belohnungen",
-    "Community-Ideen",
-    "Community-Szenen einreichen",
-    "Creator XP",
-    "Basis-Statistiken"
-  ],
-  "premiumBenefits": [
-    "Alle kostenlosen Inhalte",
-    "Priorisierte Community-Szenen",
-    "Antwort innerhalb von 48 Stunden",
-    "Platzpass-Warteschlange oben",
-    "Creator-Badge",
-    "Exklusive Profilrahmen",
-    "Exklusive Profilbanner",
-    "Exklusive Titel",
-    "Premium-Belohnungen",
-    "Beta-Zugang",
-    "Zusätzliche Missionen",
-    "Supporter-Rolle"
-  ],
-  "rewards": [
-    {
-      "level": 1,
-      "reward": "100 Credits"
-    },
-    {
-      "level": 5,
-      "reward": "Profilbanner: VAR Room"
-    },
-    {
-      "level": 10,
-      "reward": "Titel: Video Assistant"
-    },
-    {
-      "level": 20,
-      "reward": "Creator Badge Bronze"
-    },
-    {
-      "level": 50,
-      "reward": "Titel: Bundesliga Experte"
-    },
-    {
-      "level": 100,
-      "reward": "Saisonabzeichen Platzpass Elite"
-    }
-  ]
-};
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VAR Challenge Admin Center</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <section id="loginScreen" class="loginScreen">
+    <div class="loginBox">
+      <img src="assets/logo.png" alt="VAR Challenge Logo" class="loginLogo">
+      <h1>Admin Login</h1>
+      <p>VAR Challenge Admin Center</p>
+      <input id="loginUsername" placeholder="Benutzername" autocomplete="username">
+      <input id="loginPassword" type="password" placeholder="Passwort" autocomplete="current-password">
+      <button class="saveBtn" onclick="adminLogin()">Einloggen</button>
+    </div>
+  </section>
+
+  <main id="adminApp" class="adminApp hiddenAdmin">
+    <aside class="sidebar">
+      <div class="brand">
+        <img src="assets/logo.png" alt="VAR Challenge Logo">
+        <span>Admin Center 3.7.7a</span>
+      </div>
+
+      <nav class="adminNav">
+        <button class="navBtn active" data-page="dashboard">🏠 Dashboard</button>
+        <button class="navBtn" data-page="project">📁 Projekt</button>
+        <button class="navBtn" data-page="users">👥 Benutzer</button>
+        <button class="navBtn" data-page="roles">🛡 Rollen</button>
+        <button class="navBtn" data-page="countries">🌍 Länder</button>
+        <button class="navBtn" data-page="competitions">🏆 Wettbewerbe</button>
+        <button class="navBtn" data-page="seasons">⚽ Ligen & Saisons</button>
+        <button class="navBtn" data-page="clubs">🏟 Vereine</button>
+        <button class="navBtn" data-page="stadiums">🏟 Stadien</button>
+        <button class="navBtn" data-page="players">👥 Spieler</button>
+        <button class="navBtn" data-page="referees">👨‍⚖ Schiedsrichter</button>
+        <button class="navBtn" data-page="scenes">🎬 Szenen</button>
+        <button class="navBtn" data-page="media">🖼 Medien</button>
+        <button class="navBtn" data-page="communityScenes">📥 Community-Szenen</button>
+        <button class="navBtn" data-page="placepass">🎫 Platzpass</button>
+        <button class="navBtn" data-page="newsCenter">📰 News Center</button>
+        <button class="navBtn" data-page="supportHub">❤️ Community & Support</button>
+        <button class="navBtn" data-page="career">🎮 Karriere</button>
+        <button class="navBtn" data-page="settings">⚙ Einstellungen</button>
+        <button class="navBtn" data-page="help">ℹ Hilfe</button>
+      </nav>
+
+      <a href="index.html" class="backLink">← Zurück zum Spiel</a>
+      <button class="logoutBtn" onclick="adminLogout()">Logout</button>
+    </aside>
+
+    <section class="content">
+      <header class="adminHeader">
+        <div>
+          <h1 id="pageTitle">Dashboard</h1>
+          <p>VAR Challenge · Datenbank & Szenenverwaltung</p>
+        </div>
+        <div class="adminBadge" id="currentAdminBadge">OWNER</div>
+      </header>
+
+      <section id="dashboard" class="page active">
+        <div class="statsGrid">
+          <div class="statCard"><span>Szenen</span><strong id="sceneCount">0</strong></div>
+          <div class="statCard"><span>Vereine</span><strong id="clubCount">0</strong></div>
+          <div class="statCard"><span>Spieler</span><strong id="playerCount">0</strong></div>
+          <div class="statCard"><span>Medien</span><strong id="mediaCount">0</strong></div>
+          <div class="statCard"><span>Community-Szenen</span><strong id="communitySceneCount">0</strong></div>
+          <div class="statCard"><span>Platzpass-Level</span><strong id="placepassLevelCount">0</strong></div>
+          <div class="statCard"><span>News</span><strong id="newsCount">0</strong></div>
+          <div class="statCard"><span>Wettbewerbe</span><strong id="competitionCount">0</strong></div>
+          <div class="statCard"><span>Länder</span><strong id="countryCount">0</strong></div>
+          <div class="statCard"><span>Version</span><strong id="projectVersionStat">0.3</strong></div>
+          <div class="statCard"><span>Edition</span><strong id="projectEditionStat">Frauen</strong></div>
+          <div class="statCard"><span>Besuche lokal</span><strong id="analyticsVisits">0</strong></div>
+          <div class="statCard"><span>Spiele gestartet</span><strong id="analyticsGamesStarted">0</strong></div>
+          <div class="statCard"><span>Spiele beendet</span><strong id="analyticsGamesFinished">0</strong></div>
+          <div class="statCard"><span>Gespielte Szenen</span><strong id="analyticsScenesPlayed">0</strong></div>
+          <div class="statCard"><span>Trefferquote lokal</span><strong id="analyticsAccuracy">0%</strong></div>
+        </div>
+        <div class="panel">
+          <h2>Projektstatus</h2>
+          <div class="projectPreview">
+            <div><b id="dashProjectName">VAR Challenge</b><span id="dashProjectStatus">In Entwicklung</span></div>
+            <div class="progressOuter"><div id="dashProjectProgress" class="progressInner" style="width:25%"></div></div><small>Automatisch berechnet: <b id="dashProjectProgressText">0%</b></small>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Lokale Test-Statistiken</h2>
+          <p>Diese Zahlen gelten nur für diesen Browser bzw. dieses Gerät. Für echte Gesamtzahlen aller Spieler brauchen wir später Analytics oder ein Backend.</p>
+          <button class="miniBtn dangerMini" onclick="resetAdminAnalytics()">Lokale Statistiken zurücksetzen</button>
+        </div>
+      </section>
+
+      <section id="project" class="page">
+        <div class="panel">
+          <h2>Projekt Manager</h2>
+          <div class="formGrid">
+            <input id="projectGameTitle" placeholder="Spielname">
+            <input id="projectSlogan" placeholder="Slogan">
+            <select id="projectEdition">
+              <option value="Frauen Edition">👩 Frauen Edition</option>
+              <option value="Männer Edition">👨 Männer Edition</option>
+              <option value="Mixed Edition">⚽ Mixed Edition</option>
+              <option value="International Edition">🌍 International Edition</option>
+              <option value="Eigene Edition">🧩 Eigene Edition</option>
+            </select>
+            <select id="projectActiveDataBasis">
+              <option value="Frauen">Nur Frauen-Daten</option>
+              <option value="Männer">Nur Männer-Daten</option>
+              <option value="Mixed">Männer & Frauen</option>
+              <option value="International">International</option>
+            </select>
+            <input id="projectVersion" placeholder="Version">
+            <input id="projectBuild" placeholder="Build">
+            <select id="projectStatus">
+              <option value="In Entwicklung">🟢 In Entwicklung</option>
+              <option value="Alpha">🧪 Alpha</option>
+              <option value="Beta">🔵 Beta</option>
+              <option value="Release">🏁 Release</option>
+              <option value="Pause">🟡 Pause</option>
+            </select>
+            <input id="projectProgress" type="number" min="0" max="100" placeholder="Fortschritt wird automatisch berechnet" readonly>
+            <small class="formHint">Der Fortschritt wird automatisch aus CMS-Daten berechnet: Länder, Wettbewerbe, Saisons, Vereine, Stadien, Spieler, Schiedsrichter, Szenen und Karriere.</small><input id="projectNextUpdate" placeholder="Nächstes Update">
+            <input id="projectDeveloper" placeholder="Entwickler">
+            <input id="projectFooter" placeholder="Footer-Text">
+            <input id="projectCopyright" placeholder="Copyright">
+          </div>
+          <textarea id="projectChangelog" placeholder="Changelog / Neues in dieser Version"></textarea>
+          <button class="saveBtn" onclick="saveProjectSettings()">Projekt speichern</button>
+        </div>
+      </section>
+
+      <section id="users" class="page">
+        <div class="panel">
+          <h2>Benutzer erstellen</h2>
+          <div class="formGrid">
+            <input id="userDisplayName" placeholder="Anzeigename">
+            <input id="userUsername" placeholder="Login-Name">
+            <input id="userPassword" type="password" placeholder="Passwort">
+            <select id="userRole"></select>
+          </div>
+          <button class="saveBtn" onclick="addAdminUser()">Benutzer speichern</button>
+        </div>
+        <div class="panel"><h2>Benutzer</h2><div id="adminUserList" class="list"></div></div>
+      </section>
+
+      <section id="roles" class="page">
+        <div class="panel"><h2>Rollen & Rechte</h2><div id="roleInfoList" class="roleGrid"></div></div>
+      </section>
+
+      <section id="countries" class="page adminModule" data-module="countries">
+        <div class="panel">
+          <h2>Land erstellen</h2>
+          <div class="formGrid">
+            <input id="countryName" placeholder="Land z.B. Deutschland">
+            <input id="countryCode" placeholder="Code z.B. DE">
+            <input id="countryFlag" placeholder="Flagge/Emoji z.B. 🇩🇪">
+          </div>
+          <button class="saveBtn" onclick="saveCountry()">Land speichern</button>
+        </div>
+        <div class="panel"><h2>Länder</h2><div id="countryList" class="list"></div></div>
+      </section>
+
+      <section id="competitions" class="page adminModule" data-module="competitions">
+        <div class="panel">
+          <h2>Wettbewerb erstellen</h2>
+          <div class="formGrid">
+            <select id="competitionGender"><option value="Männer">Männer</option><option value="Frauen">Frauen</option><option value="Mixed">Mixed</option><option value="Jugend">Jugend</option></select>
+            <select id="competitionCountry"></select>
+            <select id="competitionType"><option value="Liga">Liga</option><option value="Pokal">Pokal</option><option value="International">International</option><option value="Nationalteam">Nationalteam</option></select>
+            <input id="competitionName" placeholder="Name z.B. Bundesliga">
+            <input id="competitionLevel" type="number" placeholder="Ebene / Level z.B. 1">
+            <input id="competitionColor" placeholder="Farbe z.B. #00ff88">
+          </div>
+          <button class="saveBtn" onclick="saveCompetition()">Wettbewerb speichern</button>
+        </div>
+        <div class="panel"><h2>Wettbewerbe</h2><div id="competitionList" class="list"></div></div>
+      </section>
+
+      <section id="seasons" class="page adminModule" data-module="seasons">
+        <div class="panel">
+          <h2>Liga/Saison erstellen</h2>
+          <div class="formGrid">
+            <select id="seasonCompetition"></select>
+            <input id="seasonName" placeholder="Saison z.B. 2026/27">
+            <input id="seasonStart" placeholder="Start z.B. 2026-08-01">
+            <input id="seasonEnd" placeholder="Ende z.B. 2027-05-31">
+          </div>
+          <button class="saveBtn" onclick="saveSeason()">Saison speichern</button>
+        </div>
+        <div class="panel"><h2>Ligen & Saisons</h2><div id="seasonList" class="list"></div></div>
+      </section>
+
+      <section id="clubs" class="page adminModule" data-module="clubs">
+        <div class="panel">
+          <h2>Verein erstellen</h2>
+          <div class="formGrid">
+            <select id="clubGender"><option value="Männer">Männer</option><option value="Frauen">Frauen</option><option value="Beide">Beide</option><option value="Jugend">Jugend</option></select>
+            <select id="clubCountry" onchange="refreshAdminDropdowns()"></select>
+            <select id="clubCompetition" onchange="refreshAdminDropdowns()"></select>
+            <select id="clubSeason"></select>
+            <input id="clubNameInput" placeholder="Vereinsname">
+            <input id="clubShortName" placeholder="Kurzname">
+            <input id="clubCity" placeholder="Stadt">
+            <input id="clubStadium" placeholder="Stadion">
+            <input id="clubLogo" placeholder="Logo-Pfad z.B. assets/clubs/werder.png">
+            <input id="clubPrimaryColor" placeholder="Primärfarbe">
+            <input id="clubSecondaryColor" placeholder="Sekundärfarbe">
+            <select id="clubPremium"><option value="false">Normal</option><option value="true">Premium-Lieblingsverein geeignet</option></select>
+          </div>
+          <textarea id="clubDescription" placeholder="Beschreibung / Notizen"></textarea>
+          <button class="saveBtn" onclick="saveClub()">Verein speichern</button>
+        </div>
+        <div class="panel filterPanel">
+          <h2>Vereine filtern</h2>
+          <div class="formGrid">
+            <select id="clubFilterGender" onchange="renderClubs()">
+              <option value="">Alle Bereiche</option>
+              <option value="Männer">Männer</option>
+              <option value="Frauen">Frauen</option>
+              <option value="Beide">Beide</option>
+              <option value="Jugend">Jugend</option>
+            </select>
+            <select id="clubFilterCompetition" onchange="renderClubs()">
+              <option value="">Alle Ligen/Wettbewerbe</option>
+            </select>
+          </div>
+          <p class="filterHint" id="clubFilterInfo">Alle Vereine werden angezeigt.</p>
+        </div>
+        <div class="panel"><h2>Vereine</h2><div id="clubList" class="list"></div></div>
+      </section>
+
+      <section id="stadiums" class="page adminModule" data-module="stadiums">
+        <div class="panel">
+          <h2>Stadion erstellen</h2>
+          <div class="formGrid">
+            <select id="stadiumCountry"></select>
+            <select id="stadiumClub"></select>
+            <input id="stadiumName" placeholder="Stadionname">
+            <input id="stadiumCity" placeholder="Stadt">
+            <input id="stadiumCapacity" type="number" placeholder="Kapazität">
+            <input id="stadiumImage" placeholder="Bildpfad">
+          </div>
+          <button class="saveBtn" onclick="saveStadium()">Stadion speichern</button>
+        </div>
+        <div class="panel"><h2>Stadien</h2><div id="stadiumList" class="list"></div></div>
+      </section>
+
+      <section id="players" class="page adminModule" data-module="players">
+        <div class="panel">
+          <h2>Spieler erstellen</h2>
+          <div class="formGrid">
+            <select id="playerGender"><option value="Männer">Männer</option><option value="Frauen">Frauen</option></select>
+            <select id="playerCountry"></select>
+            <select id="playerClub"></select>
+            <input id="playerFirstName" placeholder="Vorname">
+            <input id="playerLastName" placeholder="Nachname">
+            <select id="playerPosition"><option value="TW">TW</option><option value="IV">IV</option><option value="LV">LV</option><option value="RV">RV</option><option value="DM">DM</option><option value="ZM">ZM</option><option value="OM">OM</option><option value="LF">LF</option><option value="RF">RF</option><option value="ST">ST</option></select>
+            <input id="playerNumber" type="number" placeholder="Nummer">
+            <input id="playerImage" placeholder="Bildpfad">
+          </div>
+          <button class="saveBtn" onclick="savePlayer()">Spieler speichern</button>
+        </div>
+        <div class="panel filterPanel">
+          <h2>Spieler filtern</h2>
+          <div class="formGrid">
+            <select id="playerFilterGender" onchange="renderPlayers()">
+              <option value="">Alle Bereiche</option>
+              <option value="Männer">Männer</option>
+              <option value="Frauen">Frauen</option>
+            </select>
+            <select id="playerFilterClub" onchange="renderPlayers()">
+              <option value="">Alle Vereine</option>
+            </select>
+            <select id="playerFilterPosition" onchange="renderPlayers()">
+              <option value="">Alle Positionen</option>
+              <option value="TW">Torwart / TW</option>
+              <option value="IV">Innenverteidigung / IV</option>
+              <option value="LV">Linksverteidigung / LV</option>
+              <option value="RV">Rechtsverteidigung / RV</option>
+              <option value="DM">Defensives Mittelfeld / DM</option>
+              <option value="ZM">Zentrales Mittelfeld / ZM</option>
+              <option value="OM">Offensives Mittelfeld / OM</option>
+              <option value="LF">Linksaußen / LF</option>
+              <option value="RF">Rechtsaußen / RF</option>
+              <option value="ST">Sturm / ST</option>
+            </select>
+          </div>
+          <p class="filterHint" id="playerFilterInfo">Alle Spieler werden angezeigt.</p>
+        </div>
+        <div class="panel"><h2>Spieler</h2><div id="playerList" class="list"></div></div>
+      </section>
+
+      <section id="referees" class="page adminModule" data-module="referees">
+        <div class="panel">
+          <h2>Schiedsrichter erstellen</h2>
+          <div class="formGrid">
+            <input id="refereeName" placeholder="Name">
+            <select id="refereeCountry"></select>
+            <select id="refereeLicense"><option value="DFB-Anwärter">DFB-Anwärter</option><option value="DFB">DFB</option><option value="DFB Elite">DFB Elite</option><option value="UEFA">UEFA</option><option value="UEFA Elite">UEFA Elite</option><option value="FIFA">FIFA</option></select>
+            <select id="refereeVar"><option value="false">Kein VAR</option><option value="true">VAR-berechtigt</option></select>
+            <input id="refereeImage" placeholder="Bildpfad">
+          </div>
+          <button class="saveBtn" onclick="saveReferee()">Schiedsrichter speichern</button>
+        </div>
+        <div class="panel"><h2>Schiedsrichter</h2><div id="refereeList" class="list"></div></div>
+      </section>
+
+      <section id="scenes" class="page adminModule" data-module="scenes">
+        <div class="panel">
+          <h2>Szene erstellen</h2>
+          <div class="formGrid">
+            <select id="sceneGender" onchange="refreshSceneDropdowns()"><option value="Männer">Männer</option><option value="Frauen">Frauen</option><option value="Mixed">Mixed</option></select>
+            <select id="sceneCountry" onchange="refreshSceneDropdowns()"></select>
+            <select id="sceneCompetition" onchange="refreshSceneDropdowns()"></select>
+            <select id="sceneSeason" onchange="refreshSceneDropdowns()"></select>
+            <select id="sceneHomeClub" onchange="refreshScenePlayerDropdowns()"></select>
+            <select id="sceneAwayClub" onchange="refreshScenePlayerDropdowns()"></select>
+            <select id="sceneStadium"></select>
+            <select id="sceneReferee"></select>
+            <input id="sceneMinute" placeholder="Minute z.B. 78:34">
+            <input id="sceneScoreline" placeholder="Spielstand z.B. 1:0">
+            <input id="sceneTitleInput" placeholder="Titel der Szene">
+            <select id="sceneCategory"><option value="Foulspiel">Foulspiel</option><option value="Strafstoß">Strafstoß</option><option value="Handspiel">Handspiel</option><option value="Abseits">Abseits</option><option value="Rote Karte">Rote Karte</option><option value="Gelbe Karte">Gelbe Karte</option><option value="Torlinie">Torlinie</option><option value="Vorteil">Vorteil</option></select>
+            <select id="sceneCorrect"><option value="Tor">Tor</option><option value="Kein Tor">Kein Tor</option><option value="Abseits">Abseits</option><option value="Kein Abseits">Kein Abseits</option><option value="Elfmeter">Elfmeter</option><option value="Kein Elfmeter">Kein Elfmeter</option><option value="Foul">Foul</option><option value="Kein Foul">Kein Foul</option><option value="Gelbe Karte">Gelbe Karte</option><option value="Rote Karte">Rote Karte</option><option value="Weiterspielen">Weiterspielen</option></select>
+            <select id="sceneDifficulty"><option value="Leicht">Leicht</option><option value="Normal">Normal</option><option value="Schwer">Schwer</option><option value="Elite">Elite</option></select>
+            <select id="sceneTemplate" onchange="applySceneTemplate()"><option value="">Szenen-Vorlage</option><option value="offside_goal">Tor nach Abseits</option><option value="handball_penalty">Handspiel im Strafraum</option><option value="soft_contact">Kontakt im Strafraum</option><option value="last_defender">Notbremse</option><option value="goal_line">Torlinie</option><option value="red_card_foul">Hartes Foulspiel</option><option value="dive">Schwalbe</option></select>
+            <select id="sceneAttacker"><option value="">Angreifer auswählen</option></select>
+            <select id="sceneDefender"><option value="">Verteidiger auswählen</option></select>
+            <select id="sceneGoalkeeper"><option value="">Torwart auswählen</option></select>
+          </div>
+          <textarea id="sceneDescriptionInput" placeholder="Beschreibung mit optionalen Platzhaltern: {ANGREIFER}, {VERTEIDIGER}, {TORWART}"></textarea>
+          <textarea id="sceneExplanation" placeholder="Erklärung der Entscheidung"></textarea>
+          <div class="formGrid">
+            <input id="sceneImagePath" placeholder="Bildpfad z.B. assets/scenes/abseits-001.png">
+            <input id="sceneVideoPath" placeholder="Videopfad optional">
+          </div>
+          <div class="checkboxGrid" id="sceneOptionChecks"></div>
+          <button class="saveBtn" onclick="saveScene()">Szene speichern</button>
+        </div>
+        <div class="panel"><h2>Szenen</h2><div id="sceneList" class="list"></div></div>
+      </section>
+
+      
+      <section id="media" class="page adminModule" data-module="media">
+        <div class="panel">
+          <h2>Medium hinzufügen</h2>
+          <div class="formGrid">
+            <select id="mediaType">
+              <option value="Bild">Bild</option>
+              <option value="Video">Video</option>
+              <option value="Logo">Logo</option>
+              <option value="Banner">Banner</option>
+              <option value="Stadionbild">Stadionbild</option>
+              <option value="Sonstiges">Sonstiges</option>
+            </select>
+            <input id="mediaTitle" placeholder="Titel z.B. Bayern gegen Bremen Szene 01">
+            <input id="mediaPath" placeholder="Pfad z.B. assets/scenes/bayern-bremen-001.png">
+            <input id="mediaCategory" placeholder="Kategorie z.B. Szene, Verein, Stadion">
+            <input id="mediaCredit" placeholder="Quelle/Credit optional">
+          </div>
+          <textarea id="mediaNotes" placeholder="Notizen / Verwendung"></textarea>
+          <button class="saveBtn" onclick="saveMediaItem()">Medium speichern</button>
+        </div>
+
+        <div class="panel filterPanel">
+          <h2>Medien filtern</h2>
+          <div class="formGrid">
+            <select id="mediaFilterType" onchange="renderMediaItems()">
+              <option value="">Alle Medien</option>
+              <option value="Bild">Bilder</option>
+              <option value="Video">Videos</option>
+              <option value="Logo">Logos</option>
+              <option value="Banner">Banner</option>
+              <option value="Stadionbild">Stadionbilder</option>
+            </select>
+          </div>
+          <p class="filterHint" id="mediaFilterInfo">Alle Medien werden angezeigt.</p>
+        </div>
+
+        <div class="panel"><h2>Medienbibliothek</h2><div id="mediaList" class="mediaGrid"></div></div>
+      </section>
+
+      <section id="communityScenes" class="page adminModule" data-module="communityScenes">
+        <div class="panel">
+          <h2>Community-Szene einreichen / simulieren</h2>
+          <div class="formGrid">
+            <select id="submissionPriority">
+              <option value="standard">Standard · Antwort innerhalb 30 Tagen</option>
+              <option value="platzpass">⭐ Platzpass · Antwort innerhalb 48 Stunden</option>
+            </select>
+            <input id="submissionUser" placeholder="Einreicher / Spielername">
+            <select id="submissionCompetition"></select>
+            <select id="submissionHomeClub"></select>
+            <select id="submissionAwayClub"></select>
+            <input id="submissionTitle" placeholder="Titel der Szene">
+            <select id="submissionCategory">
+              <option value="Foulspiel">Foulspiel</option>
+              <option value="Strafstoß">Strafstoß</option>
+              <option value="Handspiel">Handspiel</option>
+              <option value="Abseits">Abseits</option>
+              <option value="Rote Karte">Rote Karte</option>
+              <option value="Gelbe Karte">Gelbe Karte</option>
+              <option value="Torlinie">Torlinie</option>
+              <option value="Vorteil">Vorteil</option>
+            </select>
+            <select id="submissionCorrect">
+              <option value="Tor">Tor</option><option value="Kein Tor">Kein Tor</option><option value="Abseits">Abseits</option><option value="Kein Abseits">Kein Abseits</option><option value="Elfmeter">Elfmeter</option><option value="Kein Elfmeter">Kein Elfmeter</option><option value="Foul">Foul</option><option value="Kein Foul">Kein Foul</option><option value="Gelbe Karte">Gelbe Karte</option><option value="Rote Karte">Rote Karte</option><option value="Weiterspielen">Weiterspielen</option>
+            </select>
+            <input id="submissionImage" placeholder="Bildpfad optional">
+            <input id="submissionVideo" placeholder="Videopfad optional">
+          </div>
+          <textarea id="submissionDescription" placeholder="Beschreibung der eingereichten Szene"></textarea>
+          <textarea id="submissionExplanation" placeholder="Regelbegründung / IFAB-Hinweis"></textarea>
+          <button class="saveBtn" onclick="saveCommunitySubmission()">Einreichung speichern</button>
+        </div>
+
+        <div class="panel filterPanel">
+          <h2>Warteschlange filtern</h2>
+          <div class="formGrid">
+            <select id="submissionFilterStatus" onchange="renderCommunitySubmissions()">
+              <option value="">Alle Status</option>
+              <option value="Eingegangen">Eingegangen</option>
+              <option value="In Prüfung">In Prüfung</option>
+              <option value="Überarbeitung nötig">Überarbeitung nötig</option>
+              <option value="Freigegeben">Freigegeben</option>
+              <option value="Abgelehnt">Abgelehnt</option>
+            </select>
+            <select id="submissionFilterPriority" onchange="renderCommunitySubmissions()">
+              <option value="">Alle Warteschlangen</option>
+              <option value="platzpass">Nur Platzpass</option>
+              <option value="standard">Nur Standard</option>
+            </select>
+          </div>
+          <p class="filterHint" id="submissionQueueInfo">Platzpass-Einreichungen stehen automatisch oben.</p>
+        </div>
+
+        <div class="queueColumns">
+          <div class="panel"><h2>⭐ Platzpass-Warteschlange</h2><div id="prioritySubmissionList" class="list"></div></div>
+          <div class="panel"><h2>📄 Standard-Warteschlange</h2><div id="standardSubmissionList" class="list"></div></div>
+        </div>
+      </section>
+
+
+      <section id="placepass" class="page adminModule" data-module="placepass">
+        <div class="panel">
+          <h2>🎫 Platzpass Saison</h2>
+          <div class="formGrid">
+            <input id="passSeasonNameInput" placeholder="Saisonname z.B. Platzpass Saison 1">
+            <input id="passThemeInput" placeholder="Thema z.B. Bundesliga 2026/27">
+            <input id="passMaxLevelInput" type="number" placeholder="Max Level z.B. 100">
+            <input id="passCurrentLevelInput" type="number" placeholder="Aktuelles Level Demo">
+            <input id="passProgressInput" type="number" min="0" max="100" placeholder="Fortschritt %">
+            <input id="passTimeLeftInput" placeholder="Restzeit z.B. Noch 74 Tage">
+          </div>
+          <textarea id="passDescriptionInput" placeholder="Beschreibung: Was ist im Platzpass enthalten?"></textarea>
+          <button class="saveBtn" onclick="savePlacepassSettings()">Platzpass speichern</button>
+        </div>
+
+        <div class="panel">
+          <h2>✅ Kostenlose Vorteile</h2>
+          <div class="formGrid">
+            <input id="freeBenefitInput" placeholder="Vorteil z.B. Daily Missionen">
+            <button class="saveBtn" onclick="addPassBenefit('free')">Kostenlosen Vorteil hinzufügen</button>
+          </div>
+          <div id="freeBenefitList" class="list"></div>
+        </div>
+
+        <div class="panel">
+          <h2>💎 Platzpass-Vorteile</h2>
+          <div class="formGrid">
+            <input id="premiumBenefitInput" placeholder="Vorteil z.B. Antwort innerhalb 48 Stunden">
+            <button class="saveBtn" onclick="addPassBenefit('premium')">Premium-Vorteil hinzufügen</button>
+          </div>
+          <div id="premiumBenefitList" class="list"></div>
+        </div>
+
+        <div class="panel">
+          <h2>🎁 Belohnungen</h2>
+          <div class="formGrid">
+            <input id="passRewardLevel" type="number" placeholder="Level z.B. 10">
+            <input id="passRewardText" placeholder="Belohnung z.B. Profilbanner">
+            <select id="passRewardTrack">
+              <option value="free">Kostenlos</option>
+              <option value="premium">Platzpass</option>
+            </select>
+            <button class="saveBtn" onclick="addPassReward()">Belohnung hinzufügen</button>
+          </div>
+          <div id="passRewardList" class="list"></div>
+        </div>
+
+        <div class="panel">
+          <h2>📋 Missionen</h2>
+          <div class="formGrid">
+            <select id="passMissionType"><option value="Daily">Daily</option><option value="Weekly">Weekly</option><option value="Season">Season</option></select>
+            <input id="passMissionTitle" placeholder="Mission z.B. 10 richtige Entscheidungen">
+            <input id="passMissionReward" placeholder="Belohnung z.B. 100 XP">
+            <button class="saveBtn" onclick="addPassMission()">Mission hinzufügen</button>
+          </div>
+          <div id="passMissionList" class="list"></div>
+        </div>
+      </section>
+
+      <section id="newsCenter" class="page adminModule" data-module="newsCenter">
+        <div class="panel">
+          <h2>📰 News erstellen</h2>
+          <div class="formGrid">
+            <input id="newsTitleInput" placeholder="Titel">
+            <select id="newsCategoryInput">
+              <option value="News">News</option>
+              <option value="Update">Update</option>
+              <option value="Event">Event</option>
+              <option value="Platzpass">Platzpass</option>
+              <option value="Bug">Bekannter Fehler</option>
+              <option value="Roadmap">Roadmap</option>
+              <option value="Wartung">Wartung</option>
+              <option value="Community">Community</option>
+            </select>
+            <input id="newsDateInput" placeholder="Datum z.B. 06.07.2026">
+            <select id="newsPinnedInput"><option value="false">Nicht anheften</option><option value="true">Anheften</option></select>
+          </div>
+          <textarea id="newsTextInput" placeholder="Text / Patchnotes / Info"></textarea>
+          <button class="saveBtn" onclick="saveNewsItem()">News speichern</button>
+        </div>
+
+        <div class="panel filterPanel">
+          <h2>News filtern</h2>
+          <div class="formGrid">
+            <select id="newsFilterCategory" onchange="renderNewsItems()">
+              <option value="">Alle Kategorien</option>
+              <option value="News">News</option>
+              <option value="Update">Update</option>
+              <option value="Event">Event</option>
+              <option value="Platzpass">Platzpass</option>
+              <option value="Bug">Bekannte Fehler</option>
+              <option value="Roadmap">Roadmap</option>
+              <option value="Wartung">Wartung</option>
+              <option value="Community">Community</option>
+            </select>
+          </div>
+          <p class="filterHint" id="newsFilterInfo">Alle News werden angezeigt.</p>
+        </div>
+
+        <div class="panel"><h2>News & Infos</h2><div id="newsAdminList" class="list"></div></div>
+      </section>
+
+
+
+      <section id="supportHub" class="page adminModule" data-module="supportHub">
+        <div class="panel">
+          <h2>❤️ Community & Support</h2>
+          <div class="formGrid">
+            <input id="supportTitleInput" placeholder="Titel z.B. VAR Challenge unterstützen">
+            <input id="supportPaypalInput" placeholder="PayPal-Link">
+            <input id="supportKofiInput" placeholder="Ko-fi-Link optional">
+            <input id="supportDiscordInput" placeholder="Discord-Link">
+            <input id="supportTikTokInput" placeholder="TikTok-Link">
+            <input id="supportYouTubeInput" placeholder="YouTube-Link">
+            <input id="supportTwitchInput" placeholder="Twitch-Link">
+            <input id="supportInstagramInput" placeholder="Instagram-Link">
+            <input id="supportWebsiteInput" placeholder="Website-Link optional">
+            <input id="supportBugReportInput" placeholder="Fehler-melden-Link optional">
+            <input id="supportIdeaSubmitInput" placeholder="Idee-einreichen-Link optional">
+          </div>
+          <textarea id="supportIntroInput" placeholder="Support-Text"></textarea>
+          <button class="saveBtn" onclick="saveSupportSettings()">Support speichern</button>
+        </div>
+
+        <div class="panel">
+          <h2>🗺️ Roadmap</h2>
+          <div class="formGrid">
+            <input id="supportRoadmapVersion" placeholder="Version z.B. Alpha 3.7.8">
+            <input id="supportRoadmapTitle" placeholder="Titel z.B. Registrierung">
+            <input id="supportRoadmapStatus" placeholder="Status z.B. Geplant / Aktiv / Fertig">
+            <button class="saveBtn" onclick="addSupportRoadmapItem()">Roadmap hinzufügen</button>
+          </div>
+          <div id="supportRoadmapAdminList" class="list"></div>
+        </div>
+
+        <div class="panel">
+          <h2>📰 Changelog</h2>
+          <div class="formGrid">
+            <input id="supportChangelogVersion" placeholder="Version z.B. Alpha 3.7.7a">
+            <input id="supportChangelogText" placeholder="Änderung / Patchnote">
+            <button class="saveBtn" onclick="addSupportChangelogItem()">Changelog hinzufügen</button>
+          </div>
+          <div id="supportChangelogAdminList" class="list"></div>
+        </div>
+
+        <div class="panel">
+          <h2>❤️ Unterstützer</h2>
+          <div class="formGrid">
+            <input id="supporterNameInput" placeholder="Anzeigename oder Anonymer Unterstützer">
+            <input id="supporterMessageInput" placeholder="Optionale Nachricht">
+            <select id="supporterVisibleInput">
+              <option value="true">Öffentlich anzeigen</option>
+              <option value="false">Anonym / nicht anzeigen</option>
+            </select>
+            <button class="saveBtn" onclick="addSupporterItem()">Unterstützer hinzufügen</button>
+          </div>
+          <div id="supporterAdminList" class="list"></div>
+        </div>
+      </section>
+
+      <section id="career" class="page">
+        <div class="panel">
+          <h2>Karriere-Stufe erstellen</h2>
+          <div class="formGrid">
+            <input id="careerTitle" placeholder="Stufe z.B. Kreisliga">
+            <input id="careerXp" type="number" placeholder="Benötigte XP">
+            <input id="careerReward" placeholder="Belohnung">
+            <input id="careerUnlock" placeholder="Schaltet frei">
+          </div>
+          <button class="saveBtn" onclick="saveCareerLevel()">Stufe speichern</button>
+        </div>
+        <div class="panel"><h2>Karriere-Stufen</h2><div id="careerList" class="list"></div></div>
+      </section>
+
+      <section id="settings" class="page">
+        <div class="panel">
+          <h2>Datenverwaltung</h2>
+          <button class="saveBtn" onclick="exportAdminData()">JSON exportieren</button>
+          <label class="importLabel">JSON importieren<input type="file" accept="application/json" onchange="importAdminData(event)"></label>
+          <button class="saveBtn" onclick="createDemoScenes()">Demo-Szenen erstellen</button>
+          <button class="dangerBtn" onclick="resetAdminData()">Alle Admin-Daten zurücksetzen</button>
+        </div>
+      </section>
+
+      <section id="help" class="page">
+        <div class="panel">
+          <h2>Hilfe</h2>
+          <p><b>Dropdown-Prinzip:</b> Erst Land wählen, dann Wettbewerb, Saison und Vereine. Dadurch vermeidest du Tippfehler und kannst später Szenen automatisch generieren.</p>
+          <p><b>Premium-Lieblingsverein:</b> Vereine können als Premium-geeignet markiert werden. Später können Spieler ihren Lieblingsverein wählen.</p>
+          <p><b>Szenen:</b> Szenen können feste Vereine nutzen oder später mit Platzhaltern automatisch Spieler einsetzen.</p>
+        </div>
+      </section>
+
+    </section>
+  
+<!-- Benutzer Manager 3.7.7c -->
+<section id="userManagerPage" class="adminPage">
+  <div class="adminPageHeader">
+    <div>
+      <h1>👥 Benutzer</h1>
+      <p>Verwalte Benutzer, Rollen, Platzpass, Supporter, Profil-Badges und Sicherheit.</p>
+    </div>
+    <button class="adminPrimaryBtn" onclick="renderUserManager()">Aktualisieren</button>
+  </div>
+
+  <div class="adminPanel">
+    <h2>Benutzerübersicht</h2>
+
+    <div class="adminFilterBar">
+      <input id="userManagerSearchInput" placeholder="Benutzer suchen..." oninput="renderUserManager()" />
+      <select id="userManagerRoleFilter" onchange="renderUserManager()">
+        <option value="">Alle Rollen</option>
+        <option value="BENUTZER">Benutzer</option>
+        <option value="SUPPORTER">Supporter</option>
+        <option value="TESTER">Tester</option>
+        <option value="CREATOR">Creator</option>
+        <option value="MODERATOR">Moderator</option>
+        <option value="ADMIN">Admin</option>
+        <option value="OWNER">Owner</option>
+      </select>
+      <select id="userManagerStatusFilter" onchange="renderUserManager()">
+        <option value="">Alle Status</option>
+        <option value="active">Aktiv</option>
+        <option value="inactive">Inaktiv</option>
+        <option value="supporter">Unterstützer</option>
+        <option value="premium">Platzpass Premium</option>
+      </select>
+    </div>
+
+    <div id="userManagerList" class="adminList"></div>
+  </div>
+
+  <div id="userManagerEditPanel" class="adminPanel hidden">
+    <h2>Benutzer bearbeiten</h2>
+
+    <input type="hidden" id="userManagerEditId" />
+
+    <div class="adminTabsLite">
+      <span>👤 Profil</span>
+      <span>👑 Rechte</span>
+      <span>🎫 Platzpass</span>
+      <span>❤️ Support</span>
+      <span>🔐 Sicherheit</span>
+    </div>
+
+    <div class="adminFormGrid">
+      <label>
+        Benutzername
+        <input id="userManagerUsername" />
+      </label>
+
+      <label>
+        E-Mail
+        <input id="userManagerEmail" />
+      </label>
+
+      <label>
+        Avatar
+        <input id="userManagerAvatar" placeholder="Emoji oder Bildpfad" />
+      </label>
+
+      <label>
+        Rolle
+        <select id="userManagerRole">
+          <option value="BENUTZER">Benutzer</option>
+          <option value="SUPPORTER">Supporter</option>
+          <option value="TESTER">Tester</option>
+          <option value="CREATOR">Creator</option>
+          <option value="MODERATOR">Moderator</option>
+          <option value="ADMIN">Admin</option>
+          <option value="OWNER">Owner</option>
+        </select>
+      </label>
+
+      <label>
+        Platzpass
+        <select id="userManagerPlacepass">
+          <option value="FREE">Free</option>
+          <option value="PREMIUM">Premium</option>
+        </select>
+      </label>
+
+      <label>
+        Lieblingsverein
+        <select id="userManagerFavoriteClub">
+          <option value="">Kein Lieblingsverein</option>
+        </select>
+      </label>
+
+      <label>
+        Unterstützer
+        <select id="userManagerSupporter">
+          <option value="false">Nein</option>
+          <option value="true">Ja</option>
+        </select>
+      </label>
+
+      <label>
+        Unterstützer öffentlich anzeigen
+        <select id="userManagerSupporterPublic">
+          <option value="false">Nein</option>
+          <option value="true">Ja</option>
+        </select>
+      </label>
+
+      <label>
+        Unterstützer-Anzeigename
+        <input id="userManagerSupporterName" placeholder="Optional" />
+      </label>
+
+      <label>
+        Level
+        <input id="userManagerLevel" type="number" min="1" />
+      </label>
+
+      <label>
+        XP
+        <input id="userManagerXp" type="number" min="0" />
+      </label>
+
+      <label>
+        Status
+        <select id="userManagerActive">
+          <option value="true">Aktiv</option>
+          <option value="false">Deaktiviert</option>
+        </select>
+      </label>
+
+      <label class="adminFull">
+        Badges, mit Komma trennen
+        <input id="userManagerBadges" placeholder="👤 Spieler, ❤️ Unterstützer, 🧪 Tester" />
+      </label>
+
+      <label class="adminFull">
+        Neues Passwort optional
+        <input id="userManagerPassword" type="password" placeholder="Leer lassen = unverändert" />
+      </label>
+    </div>
+
+    <div class="adminActionRow">
+      <button class="adminPrimaryBtn" onclick="saveUserManagerEdit()">Speichern</button>
+      <button class="adminGhostBtn" onclick="cancelUserManagerEdit()">Abbrechen</button>
+      <button class="adminDangerBtn" onclick="deleteUserManagerAccount()">Benutzer löschen</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+  <script src="data/scenes.js"></script>
+  <script src="data/placepass.js"></script>
+  <script src="data/news.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
