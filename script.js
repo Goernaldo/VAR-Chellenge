@@ -1408,3 +1408,66 @@ function syncAccountProgress() {
 
   saveAccounts(accounts);
 }
+
+
+/* ===========================
+   VAR Challenge 3.7.8e
+   Device Detection
+=========================== */
+
+function detectDeviceType() {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const touch = navigator.maxTouchPoints > 0 || "ontouchstart" in window;
+  const ratio = window.devicePixelRatio || 1;
+
+  let deviceType = "desktop";
+
+  if (width <= 767) {
+    deviceType = "mobile";
+  } else if (width <= 1180 || (touch && width <= 1366)) {
+    deviceType = "tablet";
+  }
+
+  document.documentElement.dataset.device = deviceType;
+  document.body.dataset.device = deviceType;
+
+  document.documentElement.classList.remove("device-desktop", "device-tablet", "device-mobile");
+  document.body.classList.remove("device-desktop", "device-tablet", "device-mobile");
+
+  document.documentElement.classList.add(`device-${deviceType}`);
+  document.body.classList.add(`device-${deviceType}`);
+
+  window.varChallengeDevice = {
+    type: deviceType,
+    width,
+    height,
+    touch,
+    ratio
+  };
+
+  return window.varChallengeDevice;
+}
+
+function applyDeviceLayout() {
+  const device = detectDeviceType();
+
+  const logo = document.querySelector(".menuV2Logo");
+  if (logo) {
+    logo.style.display = "";
+  }
+
+  const menuScreen = document.getElementById("menuScreen");
+  if (menuScreen) {
+    menuScreen.setAttribute("data-active-device", device.type);
+  }
+}
+
+window.addEventListener("DOMContentLoaded", applyDeviceLayout);
+window.addEventListener("resize", () => {
+  clearTimeout(window.__deviceResizeTimer);
+  window.__deviceResizeTimer = setTimeout(applyDeviceLayout, 150);
+});
+window.addEventListener("orientationchange", () => {
+  setTimeout(applyDeviceLayout, 250);
+});

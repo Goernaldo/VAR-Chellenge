@@ -1678,3 +1678,181 @@ button {
     overflow: visible !important;
   }
 }
+
+
+/* ===========================
+   VAR Challenge 3.7.8e
+   Responsive Device Base
+=========================== */
+
+/* Desktop */
+.device-desktop #menuScreen.menuRedesignScreen::before {
+  background-size: cover;
+  background-position: center center;
+}
+
+.device-desktop .menuV2Shell {
+  display: grid !important;
+  grid-template-columns: minmax(250px, 330px) minmax(520px, 680px) minmax(250px, 330px) !important;
+}
+
+.device-desktop .menuV2Logo {
+  display: block !important;
+  max-width: 420px !important;
+  max-height: 220px !important;
+}
+
+/* Tablet / iPad */
+.device-tablet #menuScreen.menuRedesignScreen,
+.device-tablet .menuRedesignScreen {
+  min-height: 100vh !important;
+  height: auto !important;
+  overflow-y: auto !important;
+}
+
+.device-tablet #menuScreen.menuRedesignScreen::before {
+  position: fixed !important;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+.device-tablet .menuV2Shell {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow: visible !important;
+  padding: 94px 22px 28px !important;
+}
+
+.device-tablet .menuV2Center {
+  width: min(680px, 92vw) !important;
+  margin: 0 auto !important;
+}
+
+.device-tablet .menuV2Logo {
+  display: block !important;
+  max-width: min(360px, 68vw) !important;
+  max-height: 180px !important;
+  margin: 0 auto 14px !important;
+}
+
+.device-tablet .menuV2Widgets {
+  display: none !important;
+}
+
+.device-tablet .menuBottomBar {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: min(680px, 92vw) !important;
+  margin: 18px auto 0 !important;
+}
+
+/* Mobile */
+.device-mobile #menuScreen.menuRedesignScreen,
+.device-mobile .menuRedesignScreen {
+  min-height: 100vh !important;
+  height: auto !important;
+  overflow-y: auto !important;
+}
+
+.device-mobile #menuScreen.menuRedesignScreen::before {
+  position: fixed !important;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+.device-mobile #menuScreen.menuRedesignScreen::after {
+  background: rgba(0, 0, 0, 0.35) !important;
+}
+
+.device-mobile .menuV2Shell {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow: visible !important;
+  padding: 84px 12px 22px !important;
+}
+
+.device-mobile .menuTopProfile {
+  top: 10px !important;
+  left: 10px !important;
+  right: 10px !important;
+  width: auto !important;
+  transform: none !important;
+}
+
+.device-mobile .profilePortrait {
+  width: 44px !important;
+  height: 44px !important;
+  font-size: 22px !important;
+}
+
+.device-mobile .menuV2Center {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.device-mobile .menuV2LogoArea {
+  display: block !important;
+  min-height: 96px !important;
+  margin-bottom: 10px !important;
+}
+
+.device-mobile .menuV2Logo {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-width: min(250px, 72vw) !important;
+  max-height: 120px !important;
+  margin: 0 auto 10px !important;
+  object-fit: contain !important;
+}
+
+.device-mobile .menuV2Buttons {
+  gap: 8px !important;
+}
+
+.device-mobile .menuV2Buttons .varMenuButton {
+  grid-template-columns: 48px 1fr !important;
+  min-height: 56px !important;
+  padding: 0 12px !important;
+}
+
+.device-mobile .menuV2Buttons .varMenuButton b {
+  width: 38px !important;
+  height: 36px !important;
+  font-size: 20px !important;
+}
+
+.device-mobile .menuV2Buttons .varMenuButton span {
+  font-size: 18px !important;
+}
+
+.device-mobile .menuV2Buttons .varMenuButton small {
+  display: none !important;
+}
+
+.device-mobile .menuV2Widgets {
+  display: none !important;
+}
+
+.device-mobile .menuBottomBar {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 100% !important;
+  margin: 14px auto 0 !important;
+  grid-template-columns: 1fr !important;
+  text-align: center !important;
+}
+
+.device-mobile .legalLinks,
+.device-mobile .menuSocials {
+  text-align: center !important;
+}
