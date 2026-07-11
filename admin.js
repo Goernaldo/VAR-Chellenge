@@ -20,7 +20,7 @@ let adminState = { currentPage: "dashboard", editingSceneId: null, editing: {}, 
 
 const ROLE_DEFINITIONS = {
   OWNER: { label: "👑 Owner", permissions: ["all"], description: "Voller Zugriff auf alles." },
-  ADMIN: { label: "🛠 Admin", permissions: ["project","users","countries","competitions","seasons","clubs","stadiums","players","referees","scenes","career","settings","media","communityScenes","placepass","newsCenter"], description: "Verwaltet Inhalte und Team." },
+  ADMIN: { label: "🛠 Admin", permissions: ["project","projectStatusCenter","users","countries","competitions","seasons","clubs","stadiums","players","referees","scenes","career","settings","media","communityScenes","placepass","newsCenter"], description: "Verwaltet Inhalte und Team." },
   SCENE_AUTHOR: { label: "✍️ Szenen-Autor", permissions: ["scenes","clubs","players"], description: "Erstellt und bearbeitet Szenen." },
   DESIGNER: { label: "🎨 Designer", permissions: ["project","clubs","stadiums","players","scenes","media","placepass","newsCenter"], description: "Pflegt Bilder, Logos und Medienpfade." },
   MODERATOR: { label: "👀 Moderator", permissions: ["communityScenes","scenes","media","newsCenter","view"], description: "Prüft Community-Szenen, Bugs und Inhalte." },
@@ -926,7 +926,7 @@ function findClubIdByName(name){
 }
 
 function setupNavigation(){ document.querySelectorAll(".navBtn").forEach(btn=>btn.addEventListener("click",()=>{ const page=btn.dataset.page; if(!hasPermission(page)&&!["dashboard","help"].includes(page)){ alert("Keine Berechtigung."); return; } document.querySelectorAll(".navBtn").forEach(b=>b.classList.remove("active")); document.querySelectorAll(".page").forEach(p=>p.classList.remove("active")); btn.classList.add("active"); byId(page)?.classList.add("active"); byId("pageTitle").textContent=btn.textContent.replace(/^[^A-Za-zÄÖÜäöüß0-9]+/g,"").trim(); adminState.currentPage=page; refreshAdminDropdowns(); })); }
-function renderAll(){ renderDashboard(); renderProjectSettings(); renderUsers(); renderRoles(); renderCountries(); renderCompetitions(); renderSeasons(); renderClubs(); renderStadiums(); renderPlayers(); renderReferees(); renderScenes(); renderMediaItems(); renderCommunitySubmissions(); renderPlacepass(); renderNewsItems(); renderCareer(); refreshAdminDropdowns(); }
+function renderAll(){ renderDashboard(); renderProjectSettings(); renderDevelopmentStatusAdmin(); renderUsers(); renderRoles(); renderCountries(); renderCompetitions(); renderSeasons(); renderClubs(); renderStadiums(); renderPlayers(); renderReferees(); renderScenes(); renderMediaItems(); renderCommunitySubmissions(); renderPlacepass(); renderNewsItems(); renderCareer(); refreshAdminDropdowns(); }
 
 /* ===========================
    Automatischer Projektfortschritt
@@ -2567,3 +2567,144 @@ function userManagerRoleLabel(role) {
     window.__userManagerPageHooked = true;
   }
 })();
+
+
+/* ===========================
+   VAR Challenge 3.8.0
+   Admin Projektstatus-Zentrale
+=========================== */
+
+const DEVELOPMENT_STATUS_ADMIN_DEFAULTS = {
+  version: "Alpha 3.8.0",
+  status: "In Entwicklung",
+  overall: 18,
+  nextUpdate: "Alpha 3.8.1",
+  lastUpdate: "2026-07-11",
+  modules: {
+    menu: 95,
+    account: 90,
+    admin: 88,
+    support: 80,
+    placepass: 70,
+    scenes: 20,
+    career: 10,
+    community: 30,
+    bundesliga: 20,
+    women: 10
+  },
+  currentWork: [
+    "Neues Hauptmenü stabilisieren",
+    "Geräteerkennung für Desktop, Tablet und Handy",
+    "Admin-Rechte und Projektstatus absichern"
+  ],
+  nextTasks: [
+    "Menü final testen",
+    "Statusdaten im Admin Center pflegen",
+    "Responsive Darstellung weiter verbessern"
+  ],
+  changelog: [
+    "Projektstatus-Zentrale ergänzt",
+    "Fortschritt je Entwicklungsbereich hinzugefügt"
+  ]
+};
+
+function getAdminDevelopmentStatus() {
+  const saved = adminData.settings.developmentStatus || {};
+  return {
+    ...DEVELOPMENT_STATUS_ADMIN_DEFAULTS,
+    ...saved,
+    version: saved.version || adminData.settings.version || DEVELOPMENT_STATUS_ADMIN_DEFAULTS.version,
+    status: saved.status || adminData.settings.status || DEVELOPMENT_STATUS_ADMIN_DEFAULTS.status,
+    overall: clampStatusPercent(saved.overall ?? adminData.settings.progress ?? DEVELOPMENT_STATUS_ADMIN_DEFAULTS.overall),
+    nextUpdate: saved.nextUpdate || adminData.settings.nextUpdate || DEVELOPMENT_STATUS_ADMIN_DEFAULTS.nextUpdate,
+    modules: {
+      ...DEVELOPMENT_STATUS_ADMIN_DEFAULTS.modules,
+      ...(saved.modules || {})
+    },
+    currentWork: adminStatusLines(saved.currentWork || DEVELOPMENT_STATUS_ADMIN_DEFAULTS.currentWork),
+    nextTasks: adminStatusLines(saved.nextTasks || DEVELOPMENT_STATUS_ADMIN_DEFAULTS.nextTasks),
+    changelog: adminStatusLines(saved.changelog || adminData.settings.changelog || DEVELOPMENT_STATUS_ADMIN_DEFAULTS.changelog)
+  };
+}
+
+function clampStatusPercent(value) {
+  return Math.max(0, Math.min(100, Number(value) || 0));
+}
+
+function adminStatusLines(value) {
+  if (Array.isArray(value)) return value.filter(Boolean);
+  return String(value || "").split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+}
+
+function renderDevelopmentStatusAdmin() {
+  const data = getAdminDevelopmentStatus();
+  const moduleMap = {
+    statusModuleMenu: "menu",
+    statusModuleAccount: "account",
+    statusModuleAdmin: "admin",
+    statusModuleSupport: "support",
+    statusModulePlacepass: "placepass",
+    statusModuleScenes: "scenes",
+    statusModuleCareer: "career",
+    statusModuleCommunity: "community",
+    statusModuleBundesliga: "bundesliga",
+    statusModuleWomen: "women"
+  };
+
+  setVal("developmentStatusVersion", data.version);
+  setVal("developmentStatusState", data.status);
+  setVal("developmentStatusOverall", data.overall);
+  setVal("developmentStatusNextUpdate", data.nextUpdate);
+  setVal("developmentStatusLastUpdate", data.lastUpdate || "");
+
+  Object.entries(moduleMap).forEach(([id, key]) => setVal(id, clampStatusPercent(data.modules[key])));
+
+  setVal("developmentStatusCurrentWork", data.currentWork.join("\n"));
+  setVal("developmentStatusNextTasks", data.nextTasks.join("\n"));
+  setVal("developmentStatusChangelog", data.changelog.join("\n"));
+}
+
+function saveDevelopmentStatus() {
+  if (!ensureWrite("project")) return;
+
+  const modules = {
+    menu: clampStatusPercent(val("statusModuleMenu")),
+    account: clampStatusPercent(val("statusModuleAccount")),
+    admin: clampStatusPercent(val("statusModuleAdmin")),
+    support: clampStatusPercent(val("statusModuleSupport")),
+    placepass: clampStatusPercent(val("statusModulePlacepass")),
+    scenes: clampStatusPercent(val("statusModuleScenes")),
+    career: clampStatusPercent(val("statusModuleCareer")),
+    community: clampStatusPercent(val("statusModuleCommunity")),
+    bundesliga: clampStatusPercent(val("statusModuleBundesliga")),
+    women: clampStatusPercent(val("statusModuleWomen"))
+  };
+
+  const overallInput = val("developmentStatusOverall");
+  const calculatedAverage = Math.round(
+    Object.values(modules).reduce((sum, value) => sum + value, 0) /
+    Object.values(modules).length
+  );
+
+  const developmentStatus = {
+    version: val("developmentStatusVersion") || adminData.settings.version,
+    status: val("developmentStatusState") || "In Entwicklung",
+    overall: overallInput === "" ? calculatedAverage : clampStatusPercent(overallInput),
+    nextUpdate: val("developmentStatusNextUpdate"),
+    lastUpdate: val("developmentStatusLastUpdate"),
+    modules,
+    currentWork: adminStatusLines(val("developmentStatusCurrentWork")),
+    nextTasks: adminStatusLines(val("developmentStatusNextTasks")),
+    changelog: adminStatusLines(val("developmentStatusChangelog"))
+  };
+
+  adminData.settings.developmentStatus = developmentStatus;
+  adminData.settings.version = developmentStatus.version;
+  adminData.settings.status = developmentStatus.status;
+  adminData.settings.progress = developmentStatus.overall;
+  adminData.settings.nextUpdate = developmentStatus.nextUpdate;
+  adminData.settings.changelog = developmentStatus.changelog.join("\n");
+
+  saveAdminData();
+  alert("Projektstatus gespeichert.");
+}

@@ -158,7 +158,17 @@ function updateProjectStatusBar() {
     }
   }
 
-  const progressValue = Number(settings.progress || settings.projectProgress || 18);
+  const developmentStatus = settings.developmentStatus || {};
+  settings.version = developmentStatus.version || settings.version;
+  settings.status = developmentStatus.status || settings.status;
+  settings.nextUpdate = developmentStatus.nextUpdate || settings.nextUpdate;
+
+  const progressValue = Number(
+    developmentStatus.overall ??
+    settings.progress ??
+    settings.projectProgress ??
+    18
+  );
   const safeProgress = Math.max(0, Math.min(100, progressValue));
 
   const versionElement = document.getElementById("menuProjectVersion");
@@ -1286,6 +1296,10 @@ function updateAccountMenuUI() {
     profileBtn.classList.toggle("hidden", !current);
     if (current) profileBtn.textContent = "👤 " + current.username;
   }
+
+  if (typeof updateAdminMenuButtonVisibility === "function") {
+    updateAdminMenuButtonVisibility();
+  }
 }
 
 function getFavoriteClubNameById(clubId) {
@@ -1471,3 +1485,192 @@ window.addEventListener("resize", () => {
 window.addEventListener("orientationchange", () => {
   setTimeout(applyDeviceLayout, 250);
 });
+
+
+/* ===========================
+   VAR Challenge 3.7.8f
+   Admin Button Restore
+=========================== */
+
+function getMenuAccessRole() {
+  try {
+    const account = typeof getCurrentAccount === "function" ? getCurrentAccount() : null;
+    if (account && account.role) return String(account.role).toUpperCase();
+  } catch {}
+  try {
+    const session = JSON.parse(localStorage.getItem("varChallengeAdminSession") || "null");
+    if (session && session.role) return String(session.role).toUpperCase();
+  } catch {}
+  try {
+    const users = JSON.parse(localStorage.getItem("varChallengeAdminUsers") || "[]");
+    if (Array.isArray(users)) {
+      const owner = users.find(user => user && user.active !== false && String(user.role || "").toUpperCase() === "OWNER");
+      if (owner) return "OWNER";
+    }
+  } catch {}
+  return "BENUTZER";
+}
+
+function updateAdminMenuButtonVisibility() {
+  const button = document.getElementById("adminCenterMenuButton");
+  if (!button) return;
+  const role = getMenuAccessRole();
+  const allowed = role === "OWNER" || role === "ADMIN";
+  button.classList.toggle("hidden", !allowed);
+  button.style.display = allowed ? "" : "none";
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  updateAdminMenuButtonVisibility();
+  if (typeof updateProjectStatusBar === "function") updateProjectStatusBar();
+});
+
+window.addEventListener("storage", () => {
+  updateAdminMenuButtonVisibility();
+  if (typeof updateProjectStatusBar === "function") updateProjectStatusBar();
+});
+
+
+/* ===========================
+   VAR Challenge 3.8.0
+   Projektstatus-Zentrale
+=========================== */
+
+const DEVELOPMENT_STATUS_DEFAULTS = {
+  version: "Alpha 3.8.0",
+  status: "In Entwicklung",
+  overall: 18,
+  nextUpdate: "Alpha 3.8.1",
+  lastUpdate: "2026-07-11",
+  modules: {
+    menu: 95,
+    account: 90,
+    admin: 88,
+    support: 80,
+    placepass: 70,
+    scenes: 20,
+    career: 10,
+    community: 30,
+    bundesliga: 20,
+    women: 10
+  },
+  currentWork: [
+    "Neues Hauptmenü stabilisieren",
+    "Geräteerkennung für Desktop, Tablet und Handy",
+    "Admin-Rechte und Projektstatus absichern"
+  ],
+  nextTasks: [
+    "Menü final testen",
+    "Statusdaten im Admin Center pflegen",
+    "Responsive Darstellung weiter verbessern"
+  ],
+  changelog: [
+    "Projektstatus-Zentrale ergänzt",
+    "Fortschritt je Entwicklungsbereich hinzugefügt",
+    "Statusansicht mit Admin Center verbunden"
+  ]
+};
+
+function getDevelopmentStatusData() {
+  let settings = {};
+  try {
+    const stored = JSON.parse(localStorage.getItem("varChallengeAdminData") || "null");
+    settings = stored?.settings || {};
+  } catch {}
+
+  const saved = settings.developmentStatus || {};
+
+  return {
+    ...DEVELOPMENT_STATUS_DEFAULTS,
+    ...saved,
+    version: saved.version || settings.version || DEVELOPMENT_STATUS_DEFAULTS.version,
+    status: saved.status || settings.status || DEVELOPMENT_STATUS_DEFAULTS.status,
+    overall: normalizeDevelopmentPercent(saved.overall ?? settings.progress ?? DEVELOPMENT_STATUS_DEFAULTS.overall),
+    nextUpdate: saved.nextUpdate || settings.nextUpdate || DEVELOPMENT_STATUS_DEFAULTS.nextUpdate,
+    modules: {
+      ...DEVELOPMENT_STATUS_DEFAULTS.modules,
+      ...(saved.modules || {})
+    },
+    currentWork: normalizeDevelopmentLines(saved.currentWork || DEVELOPMENT_STATUS_DEFAULTS.currentWork),
+    nextTasks: normalizeDevelopmentLines(saved.nextTasks || DEVELOPMENT_STATUS_DEFAULTS.nextTasks),
+    changelog: normalizeDevelopmentLines(saved.changelog || settings.changelog || DEVELOPMENT_STATUS_DEFAULTS.changelog)
+  };
+}
+
+function normalizeDevelopmentPercent(value) {
+  return Math.max(0, Math.min(100, Number(value) || 0));
+}
+
+function normalizeDevelopmentLines(value) {
+  if (Array.isArray(value)) return value.filter(Boolean);
+  return String(value || "")
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(Boolean);
+}
+
+function renderDevelopmentStatusScreen() {
+  const data = getDevelopmentStatusData();
+
+  setElementText("developmentVersion", data.version);
+  setElementText("developmentStatusLabel", getStatusIcon(data.status) + " " + data.status);
+  setElementText("developmentOverallText", data.overall + "%");
+  setElementText("developmentNextUpdate", data.nextUpdate);
+  setElementText("developmentLastUpdate", formatDevelopmentDate(data.lastUpdate));
+
+  const overallFill = document.getElementById("developmentOverallFill");
+  if (overallFill) overallFill.style.width = data.overall + "%";
+
+  const definitions = [
+    ["menu", "🎮", "Hauptmenü"],
+    ["account", "👤", "Account"],
+    ["admin", "👑", "Admin Center"],
+    ["support", "❤️", "Support"],
+    ["placepass", "🎫", "Platzpass"],
+    ["scenes", "🎬", "Szenen"],
+    ["career", "🏆", "Karriere"],
+    ["community", "🌍", "Community"],
+    ["bundesliga", "⚽", "Bundesliga"],
+    ["women", "👩", "Frauenligen"]
+  ];
+
+  const grid = document.getElementById("developmentModuleGrid");
+  if (grid) {
+    grid.innerHTML = definitions.map(([key, icon, label]) => {
+      const value = normalizeDevelopmentPercent(data.modules[key]);
+      return `
+        <article class="developmentModuleCard">
+          <div class="developmentModuleTop">
+            <span>${icon} ${escapeHtml(label)}</span>
+            <strong>${value}%</strong>
+          </div>
+          <div class="developmentTrack">
+            <i style="width:${value}%"></i>
+          </div>
+        </article>
+      `;
+    }).join("");
+  }
+
+  renderDevelopmentTextList("developmentCurrentWork", data.currentWork, "🔄");
+  renderDevelopmentTextList("developmentNextTasks", data.nextTasks, "☐");
+  renderDevelopmentTextList("developmentChangelog", data.changelog, "✓");
+
+  updateProjectStatusBar();
+}
+
+function renderDevelopmentTextList(elementId, items, prefix) {
+  const element = document.getElementById(elementId);
+  if (!element) return;
+
+  element.innerHTML = items.length
+    ? items.map(item => `<p><span>${prefix}</span>${escapeHtml(item)}</p>`).join("")
+    : "<p>Keine Angaben vorhanden.</p>";
+}
+
+function formatDevelopmentDate(value) {
+  if (!value) return "-";
+  const date = new Date(value + (String(value).length === 10 ? "T12:00:00" : ""));
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString("de-DE");
+}

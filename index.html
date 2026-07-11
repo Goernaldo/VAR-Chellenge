@@ -65,7 +65,27 @@
       <button class="varMenuButton" onclick="showScreen('settingsScreen')">
         <b>⚙</b><span>EINSTELLUNGEN</span><small>Grafik, Audio und Spieloptionen</small>
       </button>
+      <button class="varMenuButton adminMenuButton hidden" id="adminCenterMenuButton" onclick="location.href='admin.html'">
+        <b>👑</b><span>ADMIN CENTER</span><small>Projekt und Inhalte verwalten</small>
+      </button>
+
     </div>
+
+    <button class="menuProjectStatusBox" type="button" onclick="showScreen('developmentStatusScreen'); renderDevelopmentStatusScreen();" aria-label="Entwicklungsstatus öffnen">
+      <div class="menuProjectStatusTop">
+        <span>🚧 PROJEKTSTATUS</span>
+        <strong id="menuProjectVersion">Alpha 3.7.8</strong>
+      </div>
+      <div class="menuProjectProgressTrack">
+        <div class="menuProjectProgressFill" id="menuProjectProgressFill" style="width:18%"></div>
+      </div>
+      <div class="menuProjectStatusBottom">
+        <span id="menuProjectStatus">🟢 In Entwicklung</span>
+        <strong id="menuProjectProgressText">18%</strong>
+        <span>Nächstes Update: <b id="menuProjectNextUpdate">3.7.9</b></span>
+      </div>
+    </button>
+
   </div>
 
   <aside class="menuV2Widgets menuV2Left">
@@ -138,23 +158,62 @@
 <button class="ghostBtn" onclick="location.href='admin.html'">Admin Center</button>
 </div>
 
-<div class="projectStatusBar" id="projectStatusBar">
-  <div class="projectStatusTop">
-    <span class="projectStatusTitle">🚧 Projektstatus</span>
-    <span class="projectStatusVersion" id="menuProjectVersion">Alpha 0.2</span>
-  </div>
-
-  <div class="projectProgressTrack">
-    <div class="projectProgressFill" id="menuProjectProgressFill" style="width: 18%;"></div>
-  </div>
-
-  <div class="projectStatusBottom">
-    <span id="menuProjectStatus">🟢 In Entwicklung</span>
-    <span id="menuProjectProgressText">18%</span>
-    <span>Nächstes Update: <b id="menuProjectNextUpdate">0.3 Beta</b></span>
-  </div>
-</div>
 </section>
+
+<!-- Entwicklungsstatus-Zentrale -->
+<section class="screen" id="developmentStatusScreen">
+  <div class="developmentStatusPage">
+    <header class="developmentStatusHeader">
+      <div>
+        <span class="developmentEyebrow">🚧 TRANSPARENTE ALPHA-ENTWICKLUNG</span>
+        <h1>Entwicklungsstatus</h1>
+        <p>Hier siehst du, wie weit VAR Challenge in den einzelnen Bereichen entwickelt ist.</p>
+      </div>
+      <button class="ghostBtn" onclick="showScreen('menuScreen')">← Zurück</button>
+    </header>
+
+    <section class="developmentSummaryCard">
+      <div>
+        <small>AKTUELLE VERSION</small>
+        <strong id="developmentVersion">Alpha 3.8.0</strong>
+      </div>
+      <div class="developmentOverall">
+        <div class="developmentOverallTop">
+          <span id="developmentStatusLabel">🟢 In Entwicklung</span>
+          <strong id="developmentOverallText">18%</strong>
+        </div>
+        <div class="developmentTrack developmentTrackLarge">
+          <i id="developmentOverallFill" style="width:18%"></i>
+        </div>
+      </div>
+      <div>
+        <small>NÄCHSTES UPDATE</small>
+        <strong id="developmentNextUpdate">Alpha 3.8.1</strong>
+      </div>
+    </section>
+
+    <section class="developmentGrid" id="developmentModuleGrid"></section>
+
+    <section class="developmentInfoGrid">
+      <article class="developmentInfoCard">
+        <h2>🛠 Aktuelle Arbeiten</h2>
+        <div id="developmentCurrentWork" class="developmentTextList"></div>
+      </article>
+
+      <article class="developmentInfoCard">
+        <h2>🔜 Nächste Schritte</h2>
+        <div id="developmentNextTasks" class="developmentTextList"></div>
+      </article>
+
+      <article class="developmentInfoCard">
+        <h2>📰 Letztes Update</h2>
+        <p id="developmentLastUpdate">-</p>
+        <div id="developmentChangelog" class="developmentTextList"></div>
+      </article>
+    </section>
+  </div>
+</section>
+
 <!-- Spiel -->
 <section class="screen" id="gameScreen">
 <header class="topBar">

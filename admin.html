@@ -29,6 +29,7 @@
       <nav class="adminNav">
         <button class="navBtn active" data-page="dashboard">🏠 Dashboard</button>
         <button class="navBtn" data-page="project">📁 Projekt</button>
+        <button class="navBtn" data-page="projectStatusCenter">🚧 Projektstatus</button>
         <button class="navBtn" data-page="users">👥 Benutzer</button>
         <button class="navBtn" data-page="roles">🛡 Rollen</button>
         <button class="navBtn" data-page="countries">🌍 Länder</button>
@@ -131,6 +132,58 @@
           </div>
           <textarea id="projectChangelog" placeholder="Changelog / Neues in dieser Version"></textarea>
           <button class="saveBtn" onclick="saveProjectSettings()">Projekt speichern</button>
+        </div>
+      </section>
+
+      
+      <section id="projectStatusCenter" class="page">
+        <div class="panel">
+          <div class="statusAdminHeader">
+            <div>
+              <h2>🚧 Projektstatus-Zentrale</h2>
+              <p>Diese Angaben erscheinen automatisch im Hauptmenü und in der ausführlichen Statusansicht.</p>
+            </div>
+            <button class="saveBtn" onclick="saveDevelopmentStatus()">Status speichern</button>
+          </div>
+
+          <div class="formGrid">
+            <input id="developmentStatusVersion" placeholder="Version, z. B. Alpha 3.8.0">
+            <select id="developmentStatusState">
+              <option value="In Entwicklung">🟢 In Entwicklung</option>
+              <option value="Alpha">🧪 Alpha</option>
+              <option value="Beta">🔵 Beta</option>
+              <option value="Wartung">🟡 Wartung</option>
+              <option value="Kritischer Fehler">🔴 Kritischer Fehler</option>
+              <option value="Release">🟣 Release</option>
+            </select>
+            <input id="developmentStatusOverall" type="number" min="0" max="100" placeholder="Gesamtfortschritt">
+            <input id="developmentStatusNextUpdate" placeholder="Nächstes Update">
+            <input id="developmentStatusLastUpdate" type="date">
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Fortschritt je Bereich</h2>
+          <div class="statusModuleEditorGrid">
+            <label>🎮 Hauptmenü<input id="statusModuleMenu" type="number" min="0" max="100"></label>
+            <label>👤 Account<input id="statusModuleAccount" type="number" min="0" max="100"></label>
+            <label>👑 Admin Center<input id="statusModuleAdmin" type="number" min="0" max="100"></label>
+            <label>❤️ Support<input id="statusModuleSupport" type="number" min="0" max="100"></label>
+            <label>🎫 Platzpass<input id="statusModulePlacepass" type="number" min="0" max="100"></label>
+            <label>🎬 Szenen<input id="statusModuleScenes" type="number" min="0" max="100"></label>
+            <label>🏆 Karriere<input id="statusModuleCareer" type="number" min="0" max="100"></label>
+            <label>🌍 Community<input id="statusModuleCommunity" type="number" min="0" max="100"></label>
+            <label>⚽ Bundesliga<input id="statusModuleBundesliga" type="number" min="0" max="100"></label>
+            <label>👩 Frauenligen<input id="statusModuleWomen" type="number" min="0" max="100"></label>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Aktuelle Arbeiten und nächste Schritte</h2>
+          <textarea id="developmentStatusCurrentWork" placeholder="Eine Zeile pro Punkt"></textarea>
+          <textarea id="developmentStatusNextTasks" placeholder="Eine Zeile pro Punkt"></textarea>
+          <textarea id="developmentStatusChangelog" placeholder="Letzte Änderungen / Changelog"></textarea>
+          <button class="saveBtn" onclick="saveDevelopmentStatus()">Status speichern</button>
         </div>
       </section>
 
